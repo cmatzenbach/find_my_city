@@ -4,10 +4,10 @@
     <head>
 
         <!-- http://getbootstrap.com/ -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
         <!-- app's own CSS -->
-        <link href="/css/styles.css" rel="stylesheet"/>
+        <link href="/css/styles.css" rel="stylesheet" />
 
         <!-- https://developers.google.com/maps/documentation/javascript/ -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACxiNX7F3MUxVS9eQ-m4kYmX-vQOeJYog"></script>
@@ -30,27 +30,38 @@
         <!-- app's own JavaScript -->
         <script src="/js/scripts.js"></script>
 
-        <title>test git
-            
-        </title>
+        <title>findmycity test</title>
 
     </head>
 
     <body>
 
         <!-- Start main panel -->
-        <div class="panel panel-info map-container">
-          <div class="panel-heading">Panel with panel-info class</div>
-          
-          <div class="panel-body map-panel">
+        <ul class="tab-row">
+            <li class="selected"><a href="#">Events Near Me</a></li>
+            <li><a href="#">My Gr&uuml;ps</a></li>
+        </ul>
+
+
+        <div class="panel-body map-panel">
             <!-- fill viewport -->
             <div class="container-fluid">
                 <!-- https://developers.google.com/maps/documentation/javascript/tutorial -->
                 <div id="map-canvas"></div>
             </div>
-         </div>
-        
         </div>
+
+
+        <script type="text/javascript">
+        $("li").click(function(e) {
+            e.preventDefault();
+            $("li").removeClass("selected");
+            $(this).addClass("selected");
+        });
+        </script>
+
+
+
 
     </body>
 

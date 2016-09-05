@@ -26,6 +26,88 @@ html, body, #map-canvas, .container-fluid
     padding: 0;
 }
 
+/* Navigation Tabs */
+.tab-row {
+  text-align: center;
+  list-style: none;
+  margin: 200px 0 20px;
+  padding: 0;
+  line-height: 35px;
+  height: 37px;
+  overflow: hidden;
+  font-size: 12px;
+  position: relative;
+}
+
+.tab-row li {
+  border: 1px solid #AAA;
+  background: #D1D1D1;
+  background: linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+  display: inline-block;
+  position:relative;
+  z-index: 0;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+  text-shadow: 0 1px #FFF;
+  margin: 0 -5px;
+  padding: 0 30px;
+}
+
+.tab-row a {
+  color: #555;
+  text-decoration: none;
+}
+
+.tab-row li.selected {
+  background: #FFF;
+  color: #333;
+  z-index: 2;
+  border-top-color: #FFF;
+}
+
+.tab-row:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-top: 1px solid #AAA;
+  z-index: 1;
+}
+
+.tab-row li:before,
+.tab-row li:after {
+  border: 1px solid #AAA;
+  position: absolute;
+  top: -1px;
+  width: 6px;
+  height: 6px;
+  content: "";
+}
+
+.tab-row li:before {
+  left: -7px;
+  border-top-right-radius: 6px;
+  border-width: 1px 1px 0px 0px;
+  box-shadow: 2px 0px 0 #ECECEC;
+}
+
+.tab-row li:after {
+  right: -7px;
+  border-top-left-radius: 6px;
+  border-width: 1px 0px 0px 1px;
+  box-shadow: -2px 0px 0 #ECECEC;
+}
+
+.tab-row li.selected:before {
+  box-shadow: 2px 0px 0 #FFF;
+}
+
+.tab-row li.selected:after {
+  box-shadow: -2px 0px 0 #FFF;
+}
+
 /* Panel to hold map */
 .map-container {
     height: 80%;
