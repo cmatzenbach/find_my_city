@@ -4,9 +4,9 @@
 .datagrid table { border-collapse: collapse; text-align: left; width:100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #990099), color-stop(1, #994E99) );background:-moz-linear-gradient( center top, #990099 5%, #994E99 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#990099', endColorstr='#994E99');background-color:#990099; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }
 </style>
 <script type="text/javascript">
-$(document).ready {
+$(document).ready(function(){
     $("#navRegister").addclass("selected");
-}
+});
 </script>
 
 <script src="js/parsley.min.js"></script>
@@ -35,29 +35,29 @@ $(document).ready {
       </div>
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Create a Username" required="">
+        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"  data-parsley-trigger="change" placeholder="Create a Username" required="">
         <small id="usernameHelp" class="form-text text-muted">Your username will be displayed to the public.</small>
       </div>
       <div class="form-group">
         <label for="first">First name</label>
-        <input type="text" class="form-control" id="first" placeholder="First name" required="">
+        <input type="text" class="form-control" id="first"  data-parsley-trigger="change" placeholder="First name" required="">
       </div>
       <div class="form-group">
         <label for="last">Last name</label>
-        <input type="text" class="form-control" id="last" placeholder="Last name" required="">
+        <input type="text" class="form-control" id="last"  data-parsley-trigger="change" placeholder="Last name" required="">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password">
+        <input type="password" class="form-control" id="password" placeholder="Password" required="">
       </div>
       <div class="form-group">
         <label for="confirmpassword">Re-Enter Password</label>
-        <input type="password" class="form-control" id="confirmpassword" placeholder="Type Password Again">
+        <input type="password" class="form-control" id="confirmpassword"  data-parsley-trigger="change" placeholder="Type Password Again" data-parsley-equalto="#password" required="">
       </div>
 
       <div class="form-group">
         <label for="mobile">Mobile Phone</label>
-        <input type="tel" class="form-control" id="mobile" aria-describedby="mobileHelp" placeholder="Mobile Phone">
+        <input type="tel" class="form-control" id="mobile" aria-describedby="mobileHelp" placeholder="Mobile Phone" pattern="/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]/">
         <small id="mobileHelp" class="form-text text-muted">Enter your mobile number. (Optional)</small>
       </div>
 
