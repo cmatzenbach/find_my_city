@@ -28,9 +28,9 @@ function render($view, $values = []) {
         extract($values);
 
         // render view (between header and footer)
-        //require("../views/header.php");
+        require("../views/header.php");
         require("../views/{$view}");
-        //require("../views/footer.php");
+        require("../views/footer.php");
         exit;
     }
 
