@@ -45,4 +45,3 @@
 
         <div class="super-container">
 
-        <div class="map-container">
