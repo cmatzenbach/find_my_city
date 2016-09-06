@@ -30,7 +30,7 @@ html, body, #map-canvas, .container-fluid
 .tab-row {
   text-align: center;
   list-style: none;
-  margin: 200px 0 20px;
+  margin: 20px 0 20px;
   padding: 0;
   line-height: 35px;
   height: 37px;
@@ -41,71 +41,76 @@ html, body, #map-canvas, .container-fluid
 
 .tab-row li {
   border: 1px solid #AAA;
-  background: #D1D1D1;
-  background: linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+
+  background: #990099; /* Old browsers */
+  background: -moz-linear-gradient(top,  #994f99 1%, #990099 48%, #994f99 99%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #994f99 1%,#990099 48%,#994f99 99%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #994f99 1%,#990099 48%,#994f99 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#994f99', endColorstr='#994f99',GradientType=0 ); /* IE6-9 */
+
   display: inline-block;
-  position:relative;
+  position: relative;
   z-index: 0;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
-  text-shadow: 0 1px #FFF;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+  /*text-shadow: 0 1px #FFF;*/
   margin: 0 -5px;
   padding: 0 30px;
 }
 
 .tab-row a {
-  color: #555;
+  color: #fff;
   text-decoration: none;
 }
 
 .tab-row li.selected {
   background: #FFF;
-  color: #333;
+  color: #990099;
   z-index: 2;
-  border-top-color: #FFF;
+  border-bottom-color: #FFF;
 }
 
 .tab-row:before {
   position: absolute;
   content: "";
   width: 100%;
-  top: 0;
+  bottom: 0;
   left: 0;
-  border-top: 1px solid #AAA;
+  border-top: 1px solid #990099;
   z-index: 1;
 }
 
 .tab-row li:before,
 .tab-row li:after {
-  border: 1px solid #AAA;
+  border: 1px solid #990099;
   position: absolute;
-  top: -1px;
+  bottom: -1px;
   width: 6px;
   height: 6px;
   content: "";
 }
 
 .tab-row li:before {
-  left: -7px;
-  border-top-right-radius: 6px;
-  border-width: 1px 1px 0px 0px;
+  left: -6px;
+  border-bottom-right-radius: 6px;
+  border-width: 0px 1px 1px 0px;
   box-shadow: 2px 0px 0 #ECECEC;
 }
 
 .tab-row li:after {
-  right: -7px;
-  border-top-left-radius: 6px;
-  border-width: 1px 0px 0px 1px;
+  right: -6px;
+  border-bottom-left-radius: 6px;
+  border-width: 0px 0px 1px 1px;
   box-shadow: -2px 0px 0 #ECECEC;
 }
 
 .tab-row li.selected:before {
-  box-shadow: 2px 0px 0 #FFF;
+  box-shadow: 2px 0px 0 #990099;
 }
 
 .tab-row li.selected:after {
-  box-shadow: -2px 0px 0 #FFF;
+  box-shadow: -2px 0px 0 #990099;
 }
 
 /* Panel to hold map */
