@@ -113,10 +113,16 @@ html, body, #map-canvas, .container-fluid
   box-shadow: -2px 0px 0 #990099;
 }
 
+/*Super container */
+.super-container {
+    height:100%;
+    width:100%;
+}
+
 /* Panel to hold map */
 .map-container {
-    height: 80%;
-    width: 55%;
+    height: 100%;
+    width: 100%;
     padding-bottom: 3%;
     margin: 0 auto;
 }
