@@ -40,15 +40,17 @@
         <ul class="tab-row">
             <li class="selected"><a href="#">Events Near Me</a></li>
             <li><a href="#">My Gr&uuml;ps</a></li>
+            <li><a href="#">Register</a></li>
         </ul>
 
-
+        <div class="map-container">
         <div class="panel-body map-panel">
             <!-- fill viewport -->
             <div class="container-fluid">
                 <!-- https://developers.google.com/maps/documentation/javascript/tutorial -->
                 <div id="map-canvas"></div>
             </div>
+        </div>
         </div>
 
 
@@ -66,5 +68,3 @@
     </body>
 
 </html>
-
-    
