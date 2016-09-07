@@ -30,7 +30,7 @@ html, body, #map-canvas, .container-fluid
 .tab-row {
   text-align: center;
   list-style: none;
-  margin: 20px 0 20px;
+  margin: 20px 0 0;
   padding: 0;
   line-height: 35px;
   height: 37px;
@@ -63,6 +63,9 @@ html, body, #map-canvas, .container-fluid
   color: #fff;
   text-decoration: none;
 }
+.tab-row li.selected a {
+    color: #990099;
+}
 
 .tab-row li.selected {
   background: #FFF;
@@ -71,7 +74,7 @@ html, body, #map-canvas, .container-fluid
   border-bottom-color: #FFF;
 }
 
-.tab-row:before {
+/*.tab-row:before {
   position: absolute;
   content: "";
   width: 100%;
@@ -79,11 +82,11 @@ html, body, #map-canvas, .container-fluid
   left: 0;
   border-top: 1px solid #990099;
   z-index: 1;
-}
+}*/
 
 .tab-row li:before,
 .tab-row li:after {
-  border: 1px solid #990099;
+  border: 1px solid #AAA;
   position: absolute;
   bottom: -1px;
   width: 6px;
@@ -95,22 +98,22 @@ html, body, #map-canvas, .container-fluid
   left: -6px;
   border-bottom-right-radius: 6px;
   border-width: 0px 1px 1px 0px;
-  box-shadow: 2px 0px 0 #ECECEC;
+  box-shadow: 2px 0px 0 #990099;
 }
 
 .tab-row li:after {
   right: -6px;
   border-bottom-left-radius: 6px;
   border-width: 0px 0px 1px 1px;
-  box-shadow: -2px 0px 0 #ECECEC;
+  box-shadow: -2px 0px 0 #990099;
 }
 
 .tab-row li.selected:before {
-  box-shadow: 2px 0px 0 #990099;
+  box-shadow: 2px 0px 0 #fff;
 }
 
 .tab-row li.selected:after {
-  box-shadow: -2px 0px 0 #990099;
+  box-shadow: -2px 0px 0 #fff;
 }
 
 /* Panel to hold map */
