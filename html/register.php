@@ -3,44 +3,62 @@
 require_once("../private/helpers.php");
 require("../private/sql.php");
 
-// if user reached page via GET (as by clicking a link or via redirect)
+// if user reached page via GET
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    // else render form
+    print_r("GETTIN");
     render("register_form.php");
 }
 
-// else if user reached page via POST (as by submitting a form via POST)
+// if user reached page via POST
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    print_r("POSTIN");
 
-    $userCheck = $pdo->prepare("SELECT * FROM user WHERE displayName = ?");
-
+    /**
+      * First we'll make sure all required fields were filled out 
+    **/
     $reqFields = array('email', 'username', 'first', 'last', 'password');
 
-    $error = false; //No errors yet
-    foreach($reqFields AS $a) { //Loop trough each field
-    if(!isset($_POST[$a]) || empty($_POST[$a])) {
-        echo 'Field '.$a.' misses!<br />'; //Display error with field
-        $error = true; //Yup there are errors
-    }
-    }
-
-    if(!$error) { //Only create queries when no error occurs
-    //Create queries....
-    }
-
-    if ($userCheck->execute(array($_POST["username"])) === 1) {
-        render("error.php", ["error"=>"Username already exists"]);
+    // Error to flag any empty req fields
+    $reqError = false;
+    // String to store error details
+    $reqErrorList;
+    foreach ($reqFields as $a) { 
+        if(!isset($_POST[$a]) || empty($_POST[$a])) {
+            // Add to error string, telling each req field that was left blank
+            $reqErrorList .= $a . ' is a required field<br />';
+            $reqError = true;
+        }
     }
 
-    else if (!$_POSt["username"] || )
+    // PAUSE - need to prepare query for second check
+    $userCheck = $pdo->prepare("SELECT * FROM user WHERE displayName = ?");
+    $userResult = $userCheck->execute(array($_POST["username"]));
+    // RESUME
 
-    $test->execute(array($id));
-    $data = $test->fetchAll(PDO::FETCH_ASSOC);
+    if ($error) { 
+        render("error.php", ["error" => $reqErrorList]);
+    }
 
-    // username and password don't already exist
-    // required fields
+    /**
+      * Next check if username already exists (using query executed above)
+    **/
+    else if ($userResult === 1) {
+        render("error.php", ["error" => "Username already exists"]);
+    }
 
-    print_r($data);
+    /**
+      * If all good, go ahead and make account
+    **/
+    else {
+
+        print_r("ALL GOOD");
+
+        /*$test->execute(array($id));
+        $data = $test->fetchAll(PDO::FETCH_ASSOC);
+
+        print_r($data);*/
+    }
+
 }
 
 
