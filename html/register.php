@@ -5,13 +5,11 @@ require("../private/sql.php");
 
 // if user reached page via GET
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    print_r("GETTIN");
     render("register_form.php");
 }
 
 // if user reached page via POST
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    print_r("POSTIN");
 
     /**
       * First we'll make sure all required fields were filled out 
@@ -32,17 +30,17 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // PAUSE - need to prepare query for second check
     $userCheck = $pdo->prepare("SELECT * FROM user WHERE displayName = ?");
-    $userResult = $userCheck->execute(array($_POST["username"]));
+    $userCheck->execute(array($_POST["username"]));    
     // RESUME
 
-    if ($error) { 
+    if ($reqError) { 
         render("error.php", ["error" => $reqErrorList]);
     }
 
     /**
       * Next check if username already exists (using query executed above)
     **/
-    else if ($userResult === 1) {
+    else if ($userResult = $userCheck->fetch()) {
         render("error.php", ["error" => "Username already exists"]);
     }
 
@@ -51,12 +49,21 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     **/
     else {
 
-        print_r("ALL GOOD");
+        try {
+            $create = $pdo->prepare("INSERT INTO user(email,displayName,first,last,carrier,mobile) VALUES(?,?,?,?,?,?)")
+                          ->execute(array($_POST["email"], $_POST["username"], $_POST["first"], $_POST["last"], $_POST["carrier"], $_POST["mobile"]));
+        }
+        catch (PDOException $e) {
+            if ($e->getCode() == 1062) {
+            // Take some action if there is a key constraint violation, i.e. duplicate name
+            render("error.php", ["error" => "Username already exists"]);
+            } 
+            else {
+                throw $e;
+            }
+        }
 
-        /*$test->execute(array($id));
-        $data = $test->fetchAll(PDO::FETCH_ASSOC);
-
-        print_r($data);*/
+        render("success.php", ["success" => "Account created!"]);
     }
 
 }
