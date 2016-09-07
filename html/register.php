@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
 
 require_once("../private/helpers.php");
@@ -67,6 +68,5 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 }
-
 
 ?>
