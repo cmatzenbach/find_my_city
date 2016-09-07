@@ -1,29 +1,43 @@
-<style>
-.datagrid { width: 80%;
-            margin: 0 auto; }
-.datagrid table { border-collapse: collapse; text-align: left; width:100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #990099), color-stop(1, #994E99) );background:-moz-linear-gradient( center top, #990099 5%, #994E99 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#990099', endColorstr='#994E99');background-color:#990099; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }
-</style>
-
-
-<script src="js/parsley.min.js"></script>
-
-<div class="datagrid" id="regFormContainer">
-<table>
-<thead><tr><th>Register</th></tr></thead>
-<tbody><tr><td>
-
-<div class="bs-callout bs-callout-warning hidden">
-  <h4>Something is wrong!</h4>
-  <p>Check your input on the highlighted fields below :(</p>
-</div>
-
-<div class="bs-callout bs-callout-info hidden">
-  <h4>:)</h4>
-  <p>Everything seems to be ok</p>
-</div>
-
-
-    <form id="newUserRegForm" data-parsley-validate="" method="POST">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#Login" data-toggle="tab">Login</a></li>
+                            <li><a href="#Registration" data-toggle="tab">Registration</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="Login">
+                                <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">
+                                        Email Address</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="loginPassword" placeholder="Email" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="loginPassword" class="col-sm-2 control-label">
+                                        Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" id="loginPassword" placeholder="Password" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            Submit</button>
+                                        <a href="javascript:;">Forgot your password?</a>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="Registration">
+     <!-- REGISTRATION FORM -->                           
+    <form id="newUserRegForm" data-parsley-validate="" action="register.php" method="POST">
       <div class="form-group">
         <label for="email">Email address</label>
         <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"  placeholder="Email Address" required="">
@@ -36,7 +50,7 @@
       </div>
       <div class="form-group">
         <label for="first">First name</label>
-        <input type="text" class="form-control" id="first" name="first" placeholder="First name" required="">
+        <input type="text" class="form-control" id="first" name="first"  placeholder="First name" required="">
       </div>
       <div class="form-group">
         <label for="last">Last name</label>
@@ -50,7 +64,7 @@
 
       <div class="form-group">
         <label for="mobile">Mobile Phone</label>
-        <input type="tel" class="form-control" id="mobile" name="mobile" aria-describedby="mobileHelp" placeholder="Mobile Phone"  pattern="^\d{10}$">
+        <input type="tel" class="form-control" id="mobile" name="mobile"aria-describedby="mobileHelp" placeholder="Mobile Phone"  pattern="^\d{10}$">
         <small id="mobileHelp" class="form-text text-muted">OPTIONAL: Enter your 10 digit mobile number <em>without dashes or spaces</em>.</small>
       </div>
 
@@ -120,12 +134,25 @@
 
       <button type="submit" class="btn btn-primary">Create Account</button>
     </form>
-
-</td></tr>
-</tbody>
-</table></div>
-<script type="text/javascript">
-$(document).ready(function () {
-   $("#navRegister").addclass("selected");
-});
-</script>
+    <!-- END REGISTRATION FORM -->
+                            </div>
+                        </div>
+                        <div id="OR" class="hidden-xs">
+                            OR</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row text-center sign-with">
+                            <div class="col-md-12">
+                                <h3>
+                                    Sign in with</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="btn-group btn-group-justified">
+                                    <a href="#" class="btn btn-primary" onclick="eModal.alert('Login via Facebook is not available just yet. Check back soon!');">Facebook</a> <a href="#" onclick="eModal.alert('Login via Google is not available just yet. Check back soon!');" class="btn btn-danger">
+                                        Google</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
