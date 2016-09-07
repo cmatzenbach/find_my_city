@@ -1,4 +1,4 @@
-     
+ <!-- BEGIN MAP FILE -->    
     <div class="map-container">
         <div class="panel-body map-panel">
                 <!-- fill viewport -->
@@ -17,3 +17,4 @@
         });
         </script> -->
     </div>
+<!-- END MAP FILE -->

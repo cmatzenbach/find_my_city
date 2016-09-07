@@ -29,7 +29,11 @@
         <!-- app's own JavaScript -->
         <script src="/js/scripts.js"></script>
 
-        <title>findmycity test</title>
+        <!-- eModal -->
+        <script src="https://rawgit.com/saribe/eModal/master/dist/eModal.min.js"></script>
+ 
+
+        <title>FindMy.City</title>
 
     </head>
 
@@ -38,10 +42,26 @@
 
         <!-- Start main panel -->
         <ul class="tab-row">
-            <li class="selected"><a href="#">Events Near Me</a></li>
-            <li><a href="#">My Gr&uuml;ps</a></li>
-            <li><a href="#">Register</a></li>
+            <li id="navEventsNearMee"><a href="#">Events Near Me</a></li>
+            <li id="navMyCity"><a href="#"><strong>My</strong> City</a></li>
+            <li id="navRegister"><a href="#">Register/Login</a></li>
         </ul>
+       <script>
+        $('#myModal').modal('show');
+
+        $("#navRegister").click(function() {
+
+            var options = {
+                    url: "renderstration.php",
+                    title:'Login/Register',
+                    size: 'xl',
+                    subtitle: 'Login is required to add new events'
+                };
+
+            eModal.ajax(options);
+        });
+        </script>
+
 
         <div class="super-container">
-
+        <!-- end HEADER FILE -->
