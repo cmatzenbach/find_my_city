@@ -186,12 +186,15 @@ jQuery(document).ready(function($){
 		}
     }
 	var map = new google.maps.Map(document.getElementById('map'), map_options);			
-	/*var marker = new google.maps.Marker({
+
+	/*  
+		var marker = new google.maps.Marker({
 	  	position: new google.maps.LatLng(latitude, longitude),
 	    map: map,
 	    visible: true,
 	 	icon: marker_url,
-	}); */
+	}); 
+	*/
 	
 	// Try HTML5 geolocation.  If browser doesn't support, won't display anything
 	if (navigator.geolocation) {
@@ -204,6 +207,8 @@ jQuery(document).ready(function($){
             }, function() { window.alert('trigger success'); }
         );
 	}
+
+	//pop up for registration
 
 
 });
@@ -220,3 +225,27 @@ $("#navRegister").click(function() {
 
 	eModal.ajax(options);
 });
+
+/* Registration/login Popup */
+$("#whatIsFindMyCity").click(function() {
+
+	var options = {
+			url: "https://findmy.city/about.php",
+			title:'About FindMy.City',
+			size: 'xl',
+			subtitle: ''
+		};
+
+	eModal.ajax(options);
+});
+
+/* Logout Button */
+// http://stackoverflow.com/questions/25260446/php-log-out-with-ajax-call
+$("#logout_btn").click(function() {
+            $.ajax({
+                url: 'logout.php',
+                success: function(data){
+                    window.location.href = data;
+                }
+            });
+        });
