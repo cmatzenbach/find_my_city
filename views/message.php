@@ -1,0 +1,25 @@
+
+<p>Message Test</p>
+
+<div class="modal-dialog modal-sm" style="color:initial">
+    <div class="modal-content">
+    <div class="modal-header">
+    <button type="button" class="x close" data-dismiss="modal">
+    <span aria-hidden="true">&nbsp;</span>
+    <span class="sr-only done">Got it 2!</span></button>
+    <h4 class="modal-title">Attention <small></small></h4></div>
+        <div class="modal-body"><?= $message ?></div><div class="modal-footer">
+        <button class="x btn btn-info" data-dismiss="modal" type="button" id="okDoneBro">Got it!</button>
+        </div>
+    </div></div>
+    <script type="text/javascript">
+     jQuery("#okDoneBro").click( function(){
+         window.location.replace("index.php");
+
+     })
+</script>
+<style>
+body {
+    background:#990099;
+}
+</style>
