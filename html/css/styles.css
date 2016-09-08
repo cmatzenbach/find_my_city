@@ -238,3 +238,19 @@ div#OR {
     z-index: 1;
     background: #DFDFDF;
 }
+
+/* Bootstrap full screen map stuff */
+
+
+
+.navbar-inverse {
+  background-color: rgba(99,0,99,.7);
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: relative;
+    top: 0;
+}

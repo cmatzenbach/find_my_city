@@ -36,11 +36,11 @@
       </div>
       <div class="form-group">
         <label for="first">First name</label>
-        <input type="text" class="form-control" id="first" name="first" placeholder="First name" required="">
+        <input type="text" class="form-control" id="first" name="first" placeholder="First name">
       </div>
       <div class="form-group">
         <label for="last">Last name</label>
-        <input type="text" class="form-control" id="last" name="last" placeholder="Last name" required="">
+        <input type="text" class="form-control" id="last" name="last" placeholder="Last name">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
