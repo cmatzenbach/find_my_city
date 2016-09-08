@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 // if user reached page via POST
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    print_r($_POST);
+
     /**
       * First we'll make sure all required fields were filled out 
     **/
@@ -63,7 +63,8 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        render("message.php", ["message" => "Account created!"]);
+        $_SESSION["user_id"] = $pdo->lastInsertId();
+        render("message.php", ["message" => "Account created!", "id" => $_SESSION["user_id"]]);
     }
 
 }
