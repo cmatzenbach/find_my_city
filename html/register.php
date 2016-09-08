@@ -50,8 +50,8 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else {
 
         try {
-            $create = $pdo->prepare("INSERT INTO user(email,displayName,first,last,carrier,mobile) VALUES(?,?,?,?,?,?)")
-                          ->execute(array($_POST["email"], $_POST["username"], $_POST["first"], $_POST["last"], $_POST["carrier"], $_POST["mobile"]));
+            $create = $pdo->prepare("INSERT INTO user(email,password,displayName,first,last,carrier,mobile) VALUES(?,?,?,?,?,?,?)")
+                          ->execute(array($_POST["email"], $_POST["password"], $_POST["username"], $_POST["first"], $_POST["last"], $_POST["carrier"], $_POST["mobile"]));
         }
         catch (PDOException $e) {
             if ($e->getCode() == 1062) {
