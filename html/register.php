@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 // if user reached page via POST
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    print_r($_POST);
     /**
       * First we'll make sure all required fields were filled out 
     **/
@@ -34,14 +34,14 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // RESUME
 
     if ($reqError) { 
-        render("error.php", ["error" => $reqErrorList]);
+        render("message.php", ["message" => $reqErrorList]);
     }
 
     /**
       * Next check if username already exists (using query executed above)
     **/
     else if ($userResult = $userCheck->fetch()) {
-        render("error.php", ["error" => "Username already exists"]);
+        render("message.php", ["message" => "Username already exists"]);
     }
 
     /**
@@ -56,14 +56,14 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         catch (PDOException $e) {
             if ($e->getCode() == 1062) {
             // Take some action if there is a key constraint violation, i.e. duplicate name
-            render("error.php", ["error" => "Username already exists"]);
+            render("message.php", ["message" => "Username already exists"]);
             } 
             else {
                 throw $e;
             }
         }
 
-        render("success.php", ["success" => "Account created!"]);
+        render("message.php", ["message" => "Account created!"]);
     }
 
 }
