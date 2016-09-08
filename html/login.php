@@ -10,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 // if user reached page via POST
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $login = $pdo->prepare("SELECT * FROM user WHERE email = ?");
-    $login->execute(array($_POST["username"])); 
+    $login = $pdo->prepare("SELECT * FROM user WHERE email = ? AND password = ?");
+    $login->execute(array($_POST["username"], $_POST["password"])); 
 }
 
 ?>
