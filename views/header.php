@@ -1,67 +1,45 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Fullscreen Google Maps With Bootstrap 3.3.5</title>
+    
 
-        <!-- http://getbootstrap.com/ -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css">
 
-        <!-- app's own CSS -->
-        <link href="/css/styles.css" rel="stylesheet" />
+  </head>
 
-        <!-- https://developers.google.com/maps/documentation/javascript/ -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACxiNX7F3MUxVS9eQ-m4kYmX-vQOeJYog"></script>
-        <!-- http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.10/ -->
-        
-        <!-- This is fucking stupid we won't use this at all: -->
-        <script src="/js/markerwithlabel_packed.js"></script>
+  <body>
 
-
-        <!-- http://jquery.com/ -->
-        <script src="/js/jquery-1.11.3.min.js"></script>
-        <!-- http://getbootstrap.com/ -->
-        <script src="/js/bootstrap.min.js"></script>
-        <!-- http://underscorejs.org/ -->
-        <script src="/js/underscore-min.js"></script>
-
-        <!-- https://github.com/twitter/typeahead.js/ -->
-        <script src="/js/typeahead.jquery.min.js"></script>
-
-        <!-- app's own JavaScript -->
-        <script src="/js/scripts.js"></script>
-
-        <!-- eModal -->
-        <script src="https://rawgit.com/saribe/eModal/master/dist/eModal.min.js"></script>
- 
-
-        <title>FindMy.City</title>
-
-    </head>
-
-    <body>
-
-
-        <!-- Start main panel -->
-        <ul class="tab-row">
-            <li id="navEventsNearMee"><a href="#">Events Near Me</a></li>
-            <li id="navMyCity"><a href="#"><strong>My</strong> City</a></li>
-            <li id="navRegister"><a href="#">Register/Login</a></li>
-        </ul>
-       <script>
-        $('#myModal').modal('show');
-
-        $("#navRegister").click(function() {
-
-            var options = {
-                    url: "renderstration.php",
-                    title:'Login/Register',
-                    size: 'xl',
-                    subtitle: 'Login is required to add new events'
-                };
-
-            eModal.ajax(options);
-        });
-        </script>
-
-
-        <div class="super-container">
-        <!-- end HEADER FILE -->
+    <!-- BEGIN NAV -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FindMy.City</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Events Nearby</a></li>
+            <li><a href="#">Map Filters</a></li>
+            <li><a href="#">What is FindMy.City?</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          <?php 
+          if(isset($_GET["id"]))
+          {
+            require("user_navbar.php");
+            require("user_events_dynamic_bar.php");
+          }else{
+            print('<li class="active" id="navRegister"><a href="#">Login/Register <span class="sr-only">(current)</span></a></li>');
+          }?> 
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-->
+    </nav>
+  <!-- END NAV -->
