@@ -208,7 +208,87 @@ jQuery(document).ready(function($){
         );
 	}
 
+	// create object prototype for markers, including markers array and relevant methods
+	var Marker_proto = {
+
+		markers: [],
+		latlon: [],
+
+		// methods
+		create: function () {
+			var self = Object.create(this);
+			//self.params = data;
+			return self;
+		},
+
+		addMarker: function(place) {
+			//create new latLng object
+			this.latlon[place.id] = new google.maps.LatLng(place.latitude,place.longitude);
+
+			// create new info window object
+			//var infowindow = new google.maps.InfoWindow();
+			
+			// create marker for each place with a name label;
+			/*this.markers[place.id] = new google.maps.Marker({
+				position: this.latlon[place.id],
+				draggable: false,
+				raiseOnDrag: false,
+				map: map,
+				//labelContent: place.place_name
+			});*/
+			
+		},
+
+		update: function() {
+			// get map's bounds
+			var bounds = map.getBounds();
+			var ne = bounds.getNorthEast();
+			var sw = bounds.getSouthWest();
+
+			// get places within bounds (asynchronously)
+			var parameters = {
+				ne: ne.lat() + "," + ne.lng(),
+				//q: $("#q").val(),
+				sw: sw.lat() + "," + sw.lng()
+			};
+			var that = this;
+			$.getJSON("update.php", parameters)
+			.done(function(data, textStatus, jqXHR) {
+				// remove old markers from map
+				//removeMarkers();
+
+				// add new markers to map
+				for (var i = 0; i < data.length; i++)
+				{
+					that.addMarker(data[i]);
+				}
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				// log error to browser's console
+				console.log(errorThrown.toString());
+				console.log("fail");
+			});
+		}
+
+	};
+
 	//pop up for registration
+	var MarkerStack = Marker_proto.create();
+	
+	//google.maps.event.addListenerOnce(map, 'bounds_changed', MarkerStack.update());
+	google.maps.event.addListenerOnce(map, 'bounds_changed', function() {
+		MarkerStack.update();
+		for (var i = 0; i < MarkerStack.latlon.length; i++) {
+			MarkerStack.markers[i] = new google.maps.Marker({
+				position: MarkerStack.latlon[i],
+				//draggable: false,
+				//raiseOnDrag: false,
+				map: map
+			});
+		}
+  	});
+
+	
 
 
 });
@@ -249,3 +329,4 @@ $("#logout_btn").click(function() {
                 }
             });
         });
+
