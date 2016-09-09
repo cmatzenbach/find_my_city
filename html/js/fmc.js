@@ -193,10 +193,10 @@ jQuery(document).ready(function($){
 
 		markers: [],
 
-		// methods
+		// constructor
 		create: function () {
 			var self = Object.create(this);
-			//self.map = map;
+			//self.params = data;
 			return self;
 		},
 
@@ -212,13 +212,11 @@ jQuery(document).ready(function($){
 				position: myLatLng,
 				draggable: false,
 				raiseOnDrag: false,
-				map: map,
-				//labelContent: place.place_name
+				map: map
 			});	
 		},
 
 		removeMarkers: function() {
-			var that = this;
 			if (this.markers) {
 				for (prop in this.markers) {
 					if (prop !== "user") {
@@ -260,7 +258,7 @@ jQuery(document).ready(function($){
 	// End prototype declaration
 	};
 
-	// Create new child of prototype
+	// Create new child of prototype to be used in program
 	var MarkerStack = Marker_proto.create();
 	
 	// Try HTML5 geolocation.  If browser doesn't support, won't display anything
