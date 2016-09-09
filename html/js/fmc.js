@@ -212,7 +212,6 @@ jQuery(document).ready(function($){
 	var Marker_proto = {
 
 		markers: [],
-		latlon: [],
 
 		// methods
 		create: function () {
@@ -223,19 +222,19 @@ jQuery(document).ready(function($){
 
 		addMarker: function(place) {
 			//create new latLng object
-			this.latlon[place.id] = new google.maps.LatLng(place.latitude,place.longitude);
+			var myLatLng = new google.maps.LatLng(place.latitude,place.longitude);
 
 			// create new info window object
 			//var infowindow = new google.maps.InfoWindow();
 			
 			// create marker for each place with a name label;
-			/*this.markers[place.id] = new google.maps.Marker({
-				position: this.latlon[place.id],
+			this.markers[place.id] = new google.maps.Marker({
+				position: myLatLng,
 				draggable: false,
 				raiseOnDrag: false,
 				map: map,
 				//labelContent: place.place_name
-			});*/
+			});
 			
 		},
 
@@ -278,17 +277,7 @@ jQuery(document).ready(function($){
 	//google.maps.event.addListenerOnce(map, 'bounds_changed', MarkerStack.update());
 	google.maps.event.addListenerOnce(map, 'bounds_changed', function() {
 		MarkerStack.update();
-		for (var i = 0; i < MarkerStack.latlon.length; i++) {
-			MarkerStack.markers[i] = new google.maps.Marker({
-				position: MarkerStack.latlon[i],
-				//draggable: false,
-				//raiseOnDrag: false,
-				map: map
-			});
-		}
   	});
-
-	
 
 
 });
