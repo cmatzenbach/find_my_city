@@ -40,18 +40,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Events Nearby</a></li>
+            <li><a href="#">Events Nearby</a></li>
             <li><a href="#">Map Filters</a></li>
-            <li><a href="#">What is FindMy.City?</a></li>
+            <li id="whatIsFindMyCity"><a href="javascript:;">What is FindMy.City?</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           <?php 
-          if(isset($_GET["id"]))
+          if(isset($_SESSION["user_id"]))
           {
-            require("user_navbar.php");
+            require("user_profile_navbar.php");
             require("user_events_dynamic_bar.php");
           }else{
-            print('<li class="active" id="navRegister"><a href="#">Login/Register <span class="sr-only">(current)</span></a></li>');
+            print('<li class="active" id="navRegister"><a href="javascript:;">Login/Register <span class="sr-only">(current)</span></a></li>');
           }?> 
           </ul>
         </div><!--/.nav-collapse -->

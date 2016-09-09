@@ -1,4 +1,5 @@
 jQuery(document).ready(function($){
+
 	var latitude = -6.565067,
 		longitude = 106.805026,
 		map_zoom = 12;
@@ -185,13 +186,80 @@ jQuery(document).ready(function($){
 			position: google.maps.ControlPosition.BOTTOM_CENTER
 		}
     }
-	var map = new google.maps.Map(document.getElementById('map'), map_options);			
-	/*var marker = new google.maps.Marker({
-	  	position: new google.maps.LatLng(latitude, longitude),
-	    map: map,
-	    visible: true,
-	 	icon: marker_url,
-	}); */
+	var map = new google.maps.Map(document.getElementById('map'), map_options);	
+
+	// create object prototype for markers, including markers array and relevant methods
+	var Marker_proto = {
+
+		markers: [],
+
+		// constructor
+		create: function () {
+			var self = Object.create(this);
+			//self.params = data;
+			return self;
+		},
+
+		addMarker: function(place) {
+			//create new latLng object
+			var myLatLng = new google.maps.LatLng(place.lat,place.lon);
+
+			// create new info window object
+			//var infowindow = new google.maps.InfoWindow();
+			
+			// create marker for each place with a name label;
+			this.markers[place.id] = new google.maps.Marker({
+				position: myLatLng,
+				draggable: false,
+				raiseOnDrag: false,
+				map: map
+			});	
+		},
+
+		removeMarkers: function() {
+			if (this.markers) {
+				for (prop in this.markers) {
+					if (prop !== "user") {
+						this.markers[prop].setMap(null);
+					}
+				}
+			}
+		},
+
+		update: function() {
+			// get map's bounds
+			var bounds = map.getBounds();
+			var ne = bounds.getNorthEast();
+			var sw = bounds.getSouthWest();
+
+			// get places within bounds (asynchronously)
+			var parameters = {
+				ne: ne.lat() + "," + ne.lng(),
+				//q: $("#q").val(),
+				sw: sw.lat() + "," + sw.lng()
+			};
+			var that = this;
+			$.getJSON("update.php", parameters)
+			.done(function(data, textStatus, jqXHR) {
+				// remove old markers from map
+				that.removeMarkers();
+				
+				// add new markers to map
+				for (var i = 0; i < data.length; i++)
+				{
+					that.addMarker(data[i]);
+				}
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				// log error to browser's console
+				console.log(errorThrown.toString());
+			});
+		}
+	// End prototype declaration
+	};
+
+	// Create new child of prototype to be used in program
+	var MarkerStack = Marker_proto.create();
 	
 	// Try HTML5 geolocation.  If browser doesn't support, won't display anything
 	if (navigator.geolocation) {
@@ -205,8 +273,11 @@ jQuery(document).ready(function($){
         );
 	}
 
+	// Load markers on map (at beginning and every time map is moved)
+	google.maps.event.addListener(map, 'idle', function () { MarkerStack.update(); })
 
 });
+
 
 /* Registration/login Popup */
 $("#navRegister").click(function() {
@@ -220,3 +291,28 @@ $("#navRegister").click(function() {
 
 	eModal.ajax(options);
 });
+
+/* Registration/login Popup */
+$("#whatIsFindMyCity").click(function() {
+
+	var options = {
+			url: "https://findmy.city/about.php",
+			title:'About FindMy.City',
+			size: 'xl',
+			subtitle: ''
+		};
+
+	eModal.ajax(options);
+});
+
+/* Logout Button */
+// http://stackoverflow.com/questions/25260446/php-log-out-with-ajax-call
+$("#logout_btn").click(function() {
+            $.ajax({
+                url: 'logout.php',
+                success: function(data){
+                    window.location.href = data;
+                }
+            });
+        });
+
