@@ -193,11 +193,6 @@ jQuery(document).ready(function($){
 	var searchBox = new google.maps.places.SearchBox(input);
 	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
 
-	// Bias the SearchBox results towards current map's viewport.
-	map.addListener('bounds_changed', function() {
-		searchBox.setBounds(map.getBounds());
-	});
-
 	// create object prototype for markers, including markers array and relevant methods
 	var Marker_proto = {
 
@@ -279,7 +274,7 @@ jQuery(document).ready(function($){
 	// Load markers on map (at beginning and every time map is moved)
 	google.maps.event.addListener(map, 'idle', function () { 
 		MarkerStack.update();
-		searchBox.setBounds();
+		searchBox.setBounds(map.getBounds());
 	});
 
 	// Listen for the event fired when the user selects a prediction and retrieve
@@ -290,12 +285,6 @@ jQuery(document).ready(function($){
 		if (places.length == 0) {
 			return;
 		}
-
-		// Clear out the old  place marker?  Do I want a place marker?
-		/*MarkerStack.markers.forEach(function(marker) {
-		marker.setMap(null);
-		});*/
-		//markers = [];
 
 		// For each place, get the icon, name and location.
 		var bounds = new google.maps.LatLngBounds();
