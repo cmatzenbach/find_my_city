@@ -165,7 +165,7 @@ jQuery(document).ready(function($){
 			featureType: "water",
 			elementType: "geometry",
 			stylers: [
-				{ hue: "#551A8B" },
+				//{ hue: "#551A8B" },
 				{ visibility: "on" }
 			]
 		}
@@ -183,10 +183,15 @@ jQuery(document).ready(function($){
       	styles: style,
 		zoomControlOptions: {
 			style: google.maps.ZoomControlStyle.SMALL,
-			position: google.maps.ControlPosition.BOTTOM_CENTER
+			position: google.maps.ControlPosition.BOTTOM_LEFT
 		}
     }
 	var map = new google.maps.Map(document.getElementById('map'), map_options);	
+
+	// Create the search box and link it to the UI element.
+	var input = document.getElementById('pac-input');
+	var searchBox = new google.maps.places.SearchBox(input);
+	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
 
 	// create object prototype for markers, including markers array and relevant methods
 	var Marker_proto = {
@@ -260,7 +265,45 @@ jQuery(document).ready(function($){
 
 	// Create new child of prototype to be used in program
 	var MarkerStack = Marker_proto.create();
-	
+
+	// Create the search box and link it to the UI element.
+	var input = document.getElementById('pac-input');
+	var searchBox = new google.maps.places.SearchBox(input);
+	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+	// Load markers on map (at beginning and every time map is moved)
+	google.maps.event.addListener(map, 'idle', function () { 
+		MarkerStack.update();
+		searchBox.setBounds(map.getBounds());
+	});
+
+	// Listen for the event fired when the user selects a prediction and retrieve
+	// more details for that place.
+	searchBox.addListener('places_changed', function() {
+    	var places = searchBox.getPlaces();
+
+		if (places.length == 0) {
+			return;
+		}
+
+		// For each place, get the icon, name and location.
+		var bounds = new google.maps.LatLngBounds();
+		places.forEach(function(place) {
+			if (!place.geometry) {
+				console.log("Returned place contains no geometry");
+				return;
+			}
+
+			if (place.geometry.viewport) {
+				// Only geocodes have viewport.
+				bounds.union(place.geometry.viewport);
+			} else {
+				bounds.extend(place.geometry.location);
+			}
+		});
+		map.fitBounds(bounds);
+  	});
+
 	// Try HTML5 geolocation.  If browser doesn't support, won't display anything
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -268,20 +311,16 @@ jQuery(document).ready(function($){
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            map.setCenter(pos);    
-            }, function() { window.alert('trigger success'); }
+            map.setCenter(pos);
+            }, function() { }
         );
 	}
-
-	// Load markers on map (at beginning and every time map is moved)
-	google.maps.event.addListener(map, 'idle', function () { MarkerStack.update(); })
 
 });
 
 
 /* Registration/login Popup */
 $("#navRegister").click(function() {
-
 	var options = {
 			url: "renderstration.php",
 			title:'Login/Register',
@@ -294,7 +333,6 @@ $("#navRegister").click(function() {
 
 /* Registration/login Popup */
 $("#whatIsFindMyCity").click(function() {
-
 	var options = {
 			url: "https://findmy.city/about.php",
 			title:'About FindMy.City',
@@ -308,11 +346,11 @@ $("#whatIsFindMyCity").click(function() {
 /* Logout Button */
 // http://stackoverflow.com/questions/25260446/php-log-out-with-ajax-call
 $("#logout_btn").click(function() {
-            $.ajax({
-                url: 'logout.php',
-                success: function(data){
-                    window.location.href = data;
-                }
-            });
-        });
+    $.ajax({
+    	url: 'logout.php',
+        success: function(data){
+        	window.location.href = data;
+        }
+    });
+});
 
