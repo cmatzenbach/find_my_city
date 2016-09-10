@@ -1,6 +1,6 @@
 <?php
 
-    require(__DIR__ . "/../includes/config.php");
+    require(__DIR__ . "/../private/sql.php");
 
     // ensure proper usage
     if (!isset($_GET["sw"], $_GET["ne"]))
@@ -27,12 +27,16 @@
     if ($sw_lng <= $ne_lng)
     {
         // doesn't cross the antimeridian
-        //$rows = CS50::query("SELECT * FROM places WHERE ? <= latitude AND latitude <= ? AND (? <= longitude AND longitude <= ?) GROUP BY country_code, place_name, admin_code1 ORDER BY RAND() LIMIT 10", $sw_lat, $ne_lat, $sw_lng, $ne_lng);
+        $check = $pdo->prepare("SELECT * FROM event WHERE ? <= lat AND lat <= ? AND (? <= lon AND lon <= ?) ORDER BY RAND() LIMIT 15");
+        $check->execute(array($sw_lat, $ne_lat, $sw_lng, $ne_lng));
+        $rows = $check->fetchAll(PDO::FETCH_ASSOC);
     }
     else
     {
         // crosses the antimeridian
-        //$rows = CS50::query("SELECT * FROM places WHERE ? <= latitude AND latitude <= ? AND (? <= longitude OR longitude <= ?) GROUP_BY country_code, place_name, admin_code1 ORDER BY RAND() LIMIT 10", $sw_lat, $ne_lat, $sw_lng, $ne_lng);
+        $check2 = $pdo->prepare("SELECT * FROM event WHERE ? <= lat AND lat <= ? AND (? <= lon OR lon <= ?) ORDER BY RAND() LIMIT 15");
+        $check2->execute(array($sw_lat, $ne_lat, $sw_lng, $ne_lng));
+        $rows = $check2->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // output places as JSON (pretty-printed for debugging convenience)

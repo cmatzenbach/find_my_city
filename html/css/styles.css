@@ -26,10 +26,106 @@ html, body, #map-canvas, .container-fluid
     padding: 0;
 }
 
-/* Panel to hold map */
+/* Navigation Tabs */
+.tab-row {
+  text-align: center;
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  line-height: 35px;
+  height: 37px;
+  overflow: hidden;
+  font-size: 12px;
+  position: relative;
+}
+
+.tab-row li {
+  border: 1px solid #AAA;
+
+  background: #990099; /* Old browsers */
+  background: -moz-linear-gradient(top,  #994f99 1%, #990099 48%, #994f99 99%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #994f99 1%,#990099 48%,#994f99 99%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #994f99 1%,#990099 48%,#994f99 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#994f99', endColorstr='#994f99',GradientType=0 ); /* IE6-9 */
+
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+  /*text-shadow: 0 1px #FFF;*/
+  margin: 0 -5px;
+  padding: 0 30px;
+}
+
+.tab-row a {
+  color: #fff;
+  text-decoration: none;
+}
+.tab-row li.selected a {
+    color: #990099;
+}
+
+.tab-row li.selected {
+  background: #FFF;
+  color: #990099;
+  z-index: 2;
+  border-bottom-color: #FFF;
+}
+
+/*.tab-row:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #990099;
+  z-index: 1;
+}*/
+
+.tab-row li:before,
+.tab-row li:after {
+  border: 1px solid #AAA;
+  position: absolute;
+  bottom: -1px;
+  width: 6px;
+  height: 6px;
+  content: "";
+}
+
+.tab-row li:before {
+  left: -6px;
+  border-bottom-right-radius: 6px;
+  border-width: 0px 1px 1px 0px;
+  box-shadow: 2px 0px 0 #990099;
+}
+
+.tab-row li:after {
+  right: -6px;
+  border-bottom-left-radius: 6px;
+  border-width: 0px 0px 1px 1px;
+  box-shadow: -2px 0px 0 #990099;
+}
+
+.tab-row li.selected:before {
+  box-shadow: 2px 0px 0 #fff;
+}
+
+.tab-row li.selected:after {
+  box-shadow: -2px 0px 0 #fff;
+}
+
+/*Super container */
+.super-container {
+    height:100%;
+    width:100%;
+}
+
+/* Panel to hold map */g
 .map-container {
-    height: 80%;
-    width: 55%;
+    height: 100%;
+    width: 100%;
     padding-bottom: 3%;
     margin: 0 auto;
 }
@@ -116,4 +212,55 @@ div.map-container div.panel-heading {
 }
 .tt-suggestion p {
     margin: 0;
+}
+
+/* Modal CSS */
+.nav-tabs {
+    margin-bottom: 15px;
+}
+.sign-with {
+    margin-top: 25px;
+    padding: 20px;
+}
+div#OR {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #C2C2C2;
+    border-radius: 50%;
+    font-weight: bold;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    float: right;
+    position: absolute;
+    right: -16px;
+    top: 40%;
+    z-index: 1;
+    background: #DFDFDF;
+}
+
+/* Bootstrap full screen map stuff */
+
+
+
+.navbar-inverse {
+  background-color: rgba(99,0,99,.7);
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+
+#containz {
+    background:#FCFCFC;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    margin: 120px auto;
+    padding: 30px;
+    width:80%;
 }
