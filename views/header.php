@@ -20,7 +20,7 @@
         <script src="/js/parsley.min.js"></script>
 
         <!-- eModal -->
-        <script src="https://rawgit.com/saribe/eModal/master/dist/eModal.min.js"></script>
+        <script src="/js/eModal.min.js"></script>
 
   </head>
 

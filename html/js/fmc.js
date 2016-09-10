@@ -268,8 +268,8 @@ jQuery(document).ready(function($){
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            map.setCenter(pos);    
-            }, function() { window.alert('trigger success'); }
+            map.setCenter(pos);
+            }, function() { }
         );
 	}
 
