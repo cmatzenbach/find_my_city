@@ -254,3 +254,13 @@ div#OR {
     position: relative;
     top: 0;
 }
+
+#containz {
+    background:#FCFCFC;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    margin: 120px auto;
+    padding: 30px;
+    width:80%;
+}
