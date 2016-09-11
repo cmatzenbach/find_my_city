@@ -47,3 +47,16 @@ $(".navbar-brand").click(function() {
 		newurl = 'https://findmy.city/';	
     	window.location.href = newurl;
 });
+
+/* Registration/login Popup */
+$(".toslink").click(function() {
+
+	var options = {
+			url: "https://findmy.city/terms.php",
+			title:'TERMS OF USE',
+			size: 'xl',
+			subtitle: 'and privacy policy'
+		};
+
+	eModal.ajax(options);
+});
