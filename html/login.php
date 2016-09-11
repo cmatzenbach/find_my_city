@@ -18,7 +18,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {*/
     $status = $login->fetchColumn();
     if ($status) {
         $_SESSION["user_id"] = $status;
-        render("message.php", ["message" => "Welcome back!"]);
+        render("message.php", ["message" => "Welcome back! You are now logged in."]);
     } 
     else {
         render("message.php", ["message" => "Your username or password is incorrect. Please try again"]);
