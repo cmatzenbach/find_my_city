@@ -1,4 +1,4 @@
-            <div class="modal-body">
+ <div class="modal-body">
                 <div class="row">
                     <div class="col-md-8" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
                         <!-- Nav tabs -->
@@ -9,19 +9,21 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="Login">
-                                <form role="form" class="form-horizontal">
+                            
+                                <!-- Begin form -->
+                                <form role="form" class="form-horizontal" action="login.php" method="POST">
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">
                                         Email Address</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="loginPassword" placeholder="Email" />
+                                        <input type="email" class="form-control" id="loginPassword" name="email" placeholder="Email" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="loginPassword" class="col-sm-2 control-label">
                                         Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="loginPassword" placeholder="Password" />
+                                        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -34,6 +36,7 @@
                                     </div>
                                 </div>
                                 </form>
+
                             </div>
                             <div class="tab-pane" id="Registration">
      <!-- REGISTRATION FORM -->                           
