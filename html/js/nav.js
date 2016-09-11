@@ -7,8 +7,8 @@ $("#navRegister").click(function() {
 			size: 'xl',
 			subtitle: 'Login is required to add new events'
 		};
-
 	eModal.ajax(options);
+
 });
 
 /* Registration/login Popup */
@@ -17,7 +17,7 @@ $("#whatIsFindMyCity").click(function() {
 	var options = {
 			url: "https://findmy.city/about.php",
 			title:'About FindMy.City',
-			size: 'xl',
+			size: 'md',
 			subtitle: ''
 		};
 
@@ -50,13 +50,11 @@ $(".navbar-brand").click(function() {
 
 /* Registration/login Popup */
 $(".toslink").click(function() {
-
 	var options = {
 			url: "https://findmy.city/terms.php",
 			title:'TERMS OF USE',
 			size: 'xl',
 			subtitle: 'and privacy policy'
 		};
-
 	eModal.ajax(options);
 });
