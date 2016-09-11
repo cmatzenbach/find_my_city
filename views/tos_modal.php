@@ -1,7 +1,5 @@
 <div class="modal-body">
 
-<h1>PRIVACY POLICY AND TERMS OF USE</h1>
-
 <p>PRIVACY
 
 <p>The owners and/or oprerators of findmy.city / Neill Lewis / Chris Matzenbach (“we”,"us") respect your rights of privacy on the Internet.  You can visit and browse findmy.city ("this website") without identifying or revealing anything about yourself. Our website analytics collect the referring website information but no personal information about visitors. We also count the number of visitors, measure the time spent on each page of the site, etc. We use this information to improve the site’s content and usability.
@@ -17,11 +15,11 @@
 <p>TERMS
 
 <p>If you are 18 or older, we grant you a limited, revocable, nonexclusive, nonassignable, nonsublicensable license to access this website in compliance with these terms; unlicensed access is unauthorized. You agree not to license, distribute, make derivative works, display, sell, or "frame" content from this site, excluding content you create. You grant us a perpetual, irrevocable, unlimited, worldwide, fully paid/sublicensable license to use, copy, perform, display, distribute, and make derivative works from content you post.
-USE. You agree not to use or provide software (except for general purpose web browsers and email clients, or software expressly licensed by us) or services that interact or interoperate with this website, e.g. for downloading, uploading, posting, flagging, emailing, search, or mobile use. Robots, spiders, scripts, scrapers, crawlers, etc. are prohibited, as are misleading, unsolicited, unlawful, and/or spam postings/email.
+USE. You agree not to use or provide software (except for general purpose web browsers and email clients, or software expressly licensed by us) or services that interact or interoperate with this website, e.g. for downloading, uploading, posting, flagging, emailing, search, or mobile use. Robots, spiders, scripts, scrapers, crawlers, etc. are prohibited, as are misleading, unsolicited, unlawful, and/or spam postings/email. You agree to refrain from posting any content to this website that is illegal, inflammatory, dangerous, or inappropriate.
  
 <p>We reserve the right to modify this policy at any time. Such modifications will be effective on the date that we post the revised policy on this website.
 
-<p>THIS WEBSITE HAS FUNCTIONALITY THAT MAY ALLOW YOU TO TAKE ACTIONS TO MEET OTHER INDIVIDUALS AND/OR ATTEND EVENTS. BY USING AND ACCESSING THIS WEBSITE YOU AGREE THAT WE SHALL NOT BE RESPONSIBLE, LIABLE, OR OTHERWISE INVOLVED WITH ANY RISKS YOU MAY ENCOUNTER AS A RESULT OF YOUR ACTIONS. FURTHERMORE, BY USING THIS WEBSITE AND/OR VIEWING ITS CONTENT YOU AGREE TO INDEMNIFY AND HOLD US HARMLESS FROM ANY RESULTING 
+<p>THIS WEBSITE HAS FUNCTIONALITY THAT MAY ENABLE YOU TO TAKE ACTIONS TO MEET OTHER INDIVIDUALS AND/OR ATTEND EVENTS. WE DO NOT ENDORSE, VERIFY, VET, RECOMMEND, APPROVE, OR CONFIRM THE EXISTANCE, USEFULNESS OR SAFETY OF ANY EVENT POSTED ON THIS WEBSITE. BY USING THIS WEBSITE AND/OR VIEWING ITS CONTENT YOU AGREE TO INDEMNIFY AND HOLD US HARMLESS FOR ANY CONSEQUENCE RESULTING FROM THESE ACTIONS TO ATTEND ANY EVENT OR MEET ANY INDIVIDUAL USING INFORMATION FROM THIS WEBSITE.
 
  <p>This website includes features that allow the public to contribute content. All content is provided as-is. We reserve the right to censor and/or remove content from this website for any reason. As we become aware of any misleading, innacurate, illegal, vulgur, rude, harassing, defaming, or content we deem otherwise inappropriate, we will remove such content at our own discretion, however we are under no obligation to do so except as requested by law enforcement.
 
