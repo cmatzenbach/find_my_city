@@ -79,16 +79,29 @@
         <label for="carrier">Select Event Type</label>
       <select class="form-control" id="category" name="category" required="" aria-describedby="categoryHelp">
             <option value=''>-- Select One --</option>
+            <option value='basketball'>Basketball</option>
+            <option value='beach'>Beach</option>
+            <option value='baseball'>Baseball</option>
+            <option value='bicycling'>Bicycling</option
+            <option value='basketball'>Bowling</option>
             <option value='cultural'>Cultural</option>
-            <option value='music'>Music</option>
+            <option value='football'>Football</option>
+            <option value='football'>Frisbee</option>
+            <option value='jobs'>Job Fair</option>
+            <option value='musicplay'>Music (playing instruments)</option>
+            <option value='musiclisten'>Music (appreciation/concerts)</option>
             <option value='party'>Party</option>
-            <option value='random'>Random</option>
+            <option value='picnic'>Picnic</option>
+            <option value='political'>Political</option>
+            <option value='random'>Random</opt0ion>
             <option value='religious'>Religious</option>  
-            <option value='sport_pickup'>Sports - Pickup Game</option>
-            <option value='sport_watch'>Sports - Watching</option>
             <option value='study'>Study Group</option>
             <option value='tabletop'>Tabletop Games</option>
             <option value='technology'>Technology</option>
+            <option value='tennis'>Tennis</option>
+            <option value='tennis'>Volleyball</option>
+            <option value='weightlifting'>Weight Lifting</option>
+            <option value='yoga'>Yoga</option>
             <option value='other'>Other</option>
           </select>
           <small id="categoryHelp" class="form-text text-muted">Please select a category for this event. </small>

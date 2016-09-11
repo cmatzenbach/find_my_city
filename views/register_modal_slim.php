@@ -134,7 +134,7 @@
           </select>
           <small id="carrierHelp" class="form-text text-muted">Please select your mobile carrier. (Optional)</small>
       </div>
-
+        <p>By clicking submit below you agree to the website terms of use.<br><br>
       <button type="submit" class="btn btn-primary">Create Account</button>
     </form>
     <!-- END REGISTRATION FORM -->

@@ -209,12 +209,14 @@ jQuery(document).ready(function($){
 			//create new latLng object
 			var myLatLng = new google.maps.LatLng(place.lat,place.lon);
 
+			var iconurl = "https://www.findmy.city/img/" + place.category + ".png";
 			// create new info window object
 			//var infowindow = new google.maps.InfoWindow();
 			
 			// create marker for each place with a name label;
 			this.markers[place.id] = new google.maps.Marker({
 				position: myLatLng,
+				icon: iconurl,
 				draggable: false,
 				raiseOnDrag: false,
 				map: map
