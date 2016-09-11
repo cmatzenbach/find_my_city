@@ -13,9 +13,19 @@
 
 
 <div id="containz">
-<h1>Create a new event!</h1>
-<h3>We'll put it on the map for everyone to see.</h3>
-    <form action="new_event.php" method="POST">
+    <h1>Create a new event!</h1>
+    <h3>We'll put it on the map for everyone to see.</h3>
+    <div style="color:red"> 
+    <?php 
+    if(!empty($errorStack))
+    {
+        print("<strong>Please correct the following errors:</strong><br>");
+        echo $errorStack;
+    }
+
+    ?>
+    </div>
+    <form action="new_event.php?map=pkr" method="POST">
     <div class="form-horizontal" style="width: 80%; margin: 0 auto;">
       <div class="form-group">
         <label for="eventName">Event Name</label>
@@ -43,12 +53,12 @@
             <label class="p-r-small col-sm-1 control-label">Lat.:</label>
 
             <div class="col-sm-3">
-                <input type="text" class="form-control" style="width: 110px" id="us3-lat" />
+                <input type="text" class="form-control" style="width: 110px" name="lat" id="us3-lat" />
             </div>
             <label class="p-r-small col-sm-2 control-label">Long.:</label>
 
             <div class="col-sm-3">
-                <input type="text" class="form-control" style="width: 110px" id="us3-lon" />
+                <input type="text" class="form-control" style="width: 110px" name="lon" id="us3-lon" />
             </div>
         </div>
 
@@ -56,44 +66,60 @@
 
       <div class="form-group">
         <label for="daterr">Event Start Date</label>
-      	<input id="daterr" type="text" class="form-control" required=""/>
+      	<input id="daterr" type="text" aria=describedby="daterrHelp" class="form-control" name="day" required="" pattern="^(((19|2\d)\d{2}\/(((0?[13578]|1[02])\/31)|((0?[1,3-9]|1[0-2])\/(29|30))))|((((19|2\d)(0[48]|[2468][048]|[13579][26])|(2[048]00)))\/0?2\/29)|((19|2\d)\d{2})\/((0?[1-9])|(1[0-2]))\/(0?[1-9]|1\d|2[0-8]))$"/>
+        <small id="daterrHelp" class="form-text text-muted">YYYY/MM/D (Year, Month, Day -- Logical progression from biggest to smallest size! Call us crazy, but we like this format!) </small>
       </div>
 
       <div class="form-group">
         <label for="sTime">Event Start Time</label>
-      	<input id="sTime" class="form-control" value="16:20:00" type="text" required=""/>
+      	<input id="sTime" class="form-control" value="16:20:00" name="hour" type="text" required=""/>
       </div>
 
         <div class="form-group">
         <label for="carrier">Select Event Type</label>
       <select class="form-control" id="category" name="category" required="" aria-describedby="categoryHelp">
             <option value=''>-- Select One --</option>
-            <option value='academic'>Academic</option>
-            <option value='cultural'>Cultural</option>            
-            <option value='game'>Game (non-sport)</option>
-            <option value='language'>Language/Translation</option>
-            <option value='music'>Music</option>
+            <option value='basketball'>Basketball</option>
+            <option value='beach'>Beach</option>
+            <option value='baseball'>Baseball</option>
+            <option value='bicycling'>Bicycling</option
+            <option value='basketball'>Bowling</option>
+            <option value='cultural'>Cultural</option>
+            <option value='football'>Football</option>
+            <option value='football'>Frisbee</option>
+            <option value='jobs'>Job Fair</option>
+            <option value='musicplay'>Music (playing instruments)</option>
+            <option value='musiclisten'>Music (appreciation/concerts)</option>
             <option value='party'>Party</option>
-            <option value='sport'>Sport</option>
+            <option value='picnic'>Picnic</option>
+            <option value='political'>Political</option>
+            <option value='random'>Random</opt0ion>
+            <option value='religious'>Religious</option>  
+            <option value='study'>Study Group</option>
+            <option value='tabletop'>Tabletop Games</option>
             <option value='technology'>Technology</option>
-            <option value='weird'>Weird/Random</option>
+            <option value='tennis'>Tennis</option>
+            <option value='tennis'>Volleyball</option>
+            <option value='weightlifting'>Weight Lifting</option>
+            <option value='yoga'>Yoga</option>
+            <option value='other'>Other</option>
           </select>
-          <small id="categoryHelp" class="form-text text-muted">Please select a category for this event.</small>
+          <small id="categoryHelp" class="form-text text-muted">Please select a category for this event. </small>
       </div>
 
       <div class="form-group">
         <label for="eventDescription">Description</label>
-        <textarea class="form-control" rows="3" id="eventDescription" name="eventDescription" aria-describedby="descriptionHelp" placeholder="A great event.." required=""></textarea>
+        <textarea class="form-control" rows="3" id="eventDescription" name="description" aria-describedby="descriptionHelp" required="" placeholder="A great event.."></textarea>
         <small id="descriptionHelp" class="form-text text-muted">Describe your event thoroughly so that people can determine if they would like to attend.</small>
       </div>
     <div class="form-group">
         <label for="minNum">Minimum # of Attendees</label>
-        <input class="form-control" type="number" value="0" id="minNum" name="min" aria-describedby="minHelp">
+        <input class="form-control" type="number" min="0" step="1" id="minNum" name="minRequired" required="" aria-describedby="minHelp">
         <small id="minHelp" class="form-text text-muted">If your event requires that a minimum number of people to attend, enter the number here. Zero = No Minimum.</small>
     </div>
     <div class="form-group">
         <label for="minNum">Maximum # of Attendees</label>
-        <input class="form-control" type="number" value="0" id="minNum" name="max" aria-describedby="maxHelp">
+        <input class="form-control" type="number" min="0" step="1" id="minNum" required+"" name="maxAllowed" aria-describedby="maxHelp">
         <small id="maxHelp" class="form-text text-muted">Enter the maximum number of attendees. Zero = No Limit.</small>
     </div>
     <div class="form-group">

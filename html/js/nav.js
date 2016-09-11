@@ -33,4 +33,30 @@ $("#logout_btn").click(function() {
                     window.location.href = data;
                 }
             });
-        });
+});
+
+
+/* Create Event Button */
+$("#createNewEvent").click(function() {
+		newurl = 'https://findmy.city/new_event.php?map=pkr';	
+    	window.location.href = newurl;
+});
+
+/* Create Event Button */
+$(".navbar-brand").click(function() {
+		newurl = 'https://findmy.city/';	
+    	window.location.href = newurl;
+});
+
+/* Registration/login Popup */
+$(".toslink").click(function() {
+
+	var options = {
+			url: "https://findmy.city/terms.php",
+			title:'TERMS OF USE',
+			size: 'xl',
+			subtitle: 'and privacy policy'
+		};
+
+	eModal.ajax(options);
+});

@@ -4,9 +4,28 @@ require_once("../private/helpers.php");
 require("../private/sql.php");
 
 // if user reached page via GET
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+if($_SESSION["user_id"] == NULL){
+    print("Stop trying to hack our shit! (You must be logged in to view this page)");
+}
+else if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_SESSION["user_id"])) 
+{
     render("new_event_form.php");
 }
+/*
+if ($_SERVER['REQUEST_METHOD'] == "GET") {
+    if(isset($_SESSION["user_id"])
+    {
+        if(!isset($_GET["map"])
+        {
+            render("message.php", ["message" => "Missing URL map parameter!"]);
+        }else{
+            render("new_event_form.php");
+        }
+    }else{
+        render("message.php", ["message" => "You must login to view this form."]);
+    }
+} */
 
 // if user reached page via POST
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,7 +33,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     /**
       * First we'll make sure all required fields were filled out 
     **/
-    $reqFields = array('email', 'username', 'first', 'last', 'password');
+    $reqFields = array('name','lat','lon','day','hour','address','description','minRequired','maxAllowed');
 
     // Error to flag any empty req fields
     $reqError = false;
@@ -28,42 +47,57 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // PAUSE - need to prepare query for second check
-    $userCheck = $pdo->prepare("SELECT * FROM user WHERE displayName = ?");
-    $userCheck->execute(array($_POST["username"]));    
-    // RESUME
+    //combine user entry for date and time into one field
+    $userDateTime = $_POST["day"] . " " . $_POST["hour"];
+    
+    //replace / with - for MySQL purposes
+    str_replace("/","-",$userDateTime);
 
+    //define status of event based on whether new event has enought people attending
+    if($_POST["minRequired"] <= 1)
+    {
+        $status = "active";
+    }else{
+        $status = "pending";
+    }
+
+    //if they are missing something give them a hint on the form
     if ($reqError) { 
-        render("message.php", ["message" => $reqErrorList]);
+        render("new_event_form.php", ["errorStack" => $reqErrorList]);
     }
 
-    /**
-      * Next check if username already exists (using query executed above)
-    **/
-    else if ($userResult = $userCheck->fetch()) {
-        render("message.php", ["message" => "Username already exists"]);
-    }
-
-    /**
-      * If all good, go ahead and make account
-    **/
+    //else OK to proceed with queries
     else {
 
         try {
-            $create = $pdo->prepare("INSERT INTO user(email,password,displayName,first,last,carrier,mobile) VALUES(?,?,?,?,?,?,?)")
-                          ->execute(array($_POST["email"], $_POST["password"], $_POST["username"], $_POST["first"], $_POST["last"], $_POST["carrier"], $_POST["mobile"]));
+            //insert event
+            $create = $pdo->prepare("INSERT INTO event(user_id,name,lat,lon,eventTime,address,description,category,status,minRequired,maxAllowed) VALUES(?,?,?,?,?,?,?,?,?,?,?)")
+                          ->execute(array($_SESSION["user_id"],$_POST["name"],$_POST["lat"],$_POST["lon"],$userDateTime,$_POST["address"],$_POST["description"],$_POST["category"],$status,$_POST["minRequired"],$_POST["maxAllowed"]));
         }
         catch (PDOException $e) {
             if ($e->getCode() == 1062) {
-            // Take some action if there is a key constraint violation, i.e. duplicate name
-            render("message.php", ["message" => "Username already exists"]);
+            // Take some action if there is a key constraint violation, i.e. duplicate name. This should not happen
+            render("message.php", ["message" => "Problem assigning event id"]);
             } 
             else {
                 throw $e;
             }
         }
 
-        render("message.php", ["message" => "Account created!"]);
+        //record event id in temp variable
+        $event_id = $pdo->lastInsertId();
+
+        //add user and event id to attendance table
+        try {
+            $create2 = $pdo->prepare("INSERT INTO attendance(user_id,event_id) VALUES(?,?)")
+                              ->execute(array($_SESSION["user_id"],$event_id));
+        }
+        catch(PDOException $f) {
+            throw $f;
+        }
+
+        //success!
+        render("message.php", ["message" => "Event created!", "id" => $event_id]);
     }
 
 }
