@@ -1,4 +1,3 @@
-
 /* Registration/login Popup */
 $("#navRegister").click(function() {
 
