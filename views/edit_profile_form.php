@@ -36,12 +36,6 @@
         <input type="text" class="form-control" id="last" name="last" placeholder="Last name" value="<?= $userData['last'] ?>" required="">
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="^([a-zA-Z0-9@*#]{8,30})$" required="">
-        <small id="passwordHelp" class="form-text text-muted">Password must be between 8 and 30 characters.</small>
-      </div>
-
-      <div class="form-group">
         <label for="mobile">Mobile Phone</label>
         <input type="tel" class="form-control" id="mobile" name="mobile"aria-describedby="mobileHelp" placeholder="Mobile Phone" value="<?= $userData['mobile'] ?>" pattern="^\d{10}$">
         <small id="mobileHelp" class="form-text text-muted">OPTIONAL: Enter your 10 digit mobile number <em>without dashes or spaces</em>.</small>
@@ -111,62 +105,18 @@
           <small id="carrierHelp" class="form-text text-muted">Please select your mobile carrier. (Optional)</small>
       </div>
 
-      <button type="submit" class="btn btn-primary">Update Account</button>
+      <p><strong>Change Password</strong><br />To change your password, please type your new password below, and then confirm in the next field.  Once you submit, your password will be automatically changed.  Passwords are case-sensative and must be between 8 and 30 characters.</p>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="^([a-zA-Z0-9@*#]{8,30})$" required="">
+        <small id="passwordHelp" class="form-text text-muted">Password must be between 8 and 30 characters. Please re-type below to confirm</small>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" pattern="^([a-zA-Z0-9@*#]{8,30})$" required="">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Ch-ch-change Me</button>
     </form>
-
-
-<script>
-            $('#eventPkrMap').locationpicker({
-                location: {
-                    latitude: 25.754326,
-                    longitude:-79.729973
-                },
-                radius: 0,
-                inputBinding: {
-                    latitudeInput: $('#us3-lat'),
-                    longitudeInput: $('#us3-lon'),
-                    radiusInput: $('#us3-radius'),
-                    locationNameInput: $('#addressx')
-                },
-                enableAutocomplete: true,
-                onchanged: function (currentLocation, radius, isMarkerDropped) {
-                    // Uncomment line below to show alert on each Location Changed event
-                    //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
-                }
-            });
-
-            
-    jQuery('#daterr').periodpicker({
-        norange:true,
-        cells: [1,1],
-        hideOnBlur: true,
-        likeXDSoftDateTimePicker: true
-    });
-    
-
-</script>
-    </div>
-
-<!-- begin time picker stuff -->
-	<meta name="viewport" content="width=device-width,user-scalable=no" />
-	<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/jquery.timepicker.min.css">
-	<script src="js/moment.min.js"></script>
-	<script src="js/jquery.mousewheel.min.js"></script>
-	<script src="build/jquery.timepicker.min.js"></script>
-	<script>
-	$('#sTime').TimePickerAlone({
-		hours: true,
-		minutes: true,
-		seconds: false,
-		ampm: true
-	});
-	window.onerror = function (m){
-	alert(m)
-	}
-
-	</script>
-<!-- end time picker stuff -->
 
 <style>
 body {

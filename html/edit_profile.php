@@ -3,14 +3,14 @@
 require_once("../private/helpers.php");
 require("../private/sql.php");
 
+$user = $pdo->prepare("SELECT * FROM user WHERE id = ?");
+$user->execute(array($_SESSION["user_id"])); 
+// get first column of resulting row, in this case id - if not blank, login successful
+$userData = $user->fetch();
+
 // if user reached page via GET
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        
-    $user = $pdo->prepare("SELECT * FROM user WHERE id = ?");
-    $user->execute(array($_SESSION["user_id"])); 
-    
-    // get first column of resulting row, in this case id - if not blank, login successful
-    $userData = $user->fetch();
+
     if ($userData) {
          render("edit_profile_form.php", ["userData" => $userData]);
     } 
@@ -22,23 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 // if user reached page via POST
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    print_r($_POST);
-    /**
-      * First we'll make sure all required fields were filled out 
-    **/
-    $reqFields = array('email', 'username', 'first', 'last', 'password');
 
-    // Error to flag any empty req fields
-    $reqError = false;
-    // String to store error details
-    $reqErrorList;
-    foreach ($reqFields as $a) { 
-        if(!isset($_POST[$a]) || empty($_POST[$a])) {
-            // Add to error string, telling each req field that was left blank
-            $reqErrorList .= $a . ' is a required field<br />';
-            $reqError = true;
-        }
-    }
+    // steps:
+    // see what has changed
+    print_r($userData);
+    // if changing username, make sure username doesn't already exist
+    // if changing password, need to add in repeat password and confirmation
+    // mobile phone pre-populate?
 
     // PAUSE - need to prepare query for second check
     $userCheck = $pdo->prepare("SELECT * FROM user WHERE displayName = ?");

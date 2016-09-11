@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 
-	var latitude = -6.565067,
-		longitude = 106.805026,
+	var latitude = 39.999673,
+		longitude = -83.012856,
 		map_zoom = 12;
 	var is_internetExplorer11= navigator.userAgent.toLowerCase().indexOf('trident') > -1;
 	var marker_url = ( is_internetExplorer11 ) ? 'http://gdurl.com/Uibp' : 'http://gdurl.com/kVn2';
@@ -213,7 +213,7 @@ jQuery(document).ready(function($){
 
 			var iconurl = "https://www.findmy.city/img/" + place.category + ".png";
 
-			// create new info window object
+			// create new info window object for loading
 			var infowind = new google.maps.InfoWindow({
                 content: '<div id="infotext">loading...</div>'
             });
@@ -228,11 +228,12 @@ jQuery(document).ready(function($){
 				map: map
 			});
 
+			var that = this;
 			//monitor marker for on-click
-            google.maps.event.addListener(Marker_proto.markers[place.id],'click', function(){
+            google.maps.event.addListener(that.markers[place.id],'click', function(){
                 
                 //on click open the info window
-                infowind.open(map, Marker_proto.markers[place.id]);
+                infowind.open(map, that.markers[place.id]);
 
 				ajax_eventinfo(infowind,place.id);
 
@@ -344,16 +345,17 @@ function ajax_eventinfo(winder,e_id) {
     var ajaj = new XMLHttpRequest();
     ajaj.onreadystatechange = function() {
         if(ajaj.readyState == 4 && ajaj.status == 200) {
-            console.log("response is: " + typeof(ajaj.response))
-			var jsdate = Date.parse(ajaj.response[0].eventTime);
+			var jsdate = Date.parse(ajaj.response[0].eventTime); // result comes out as yyyy-mm-dd hh:mm:ss
+			var dateFormatted = new Date(ajaj.response[0].eventTime);
             var html = '<div>'
             html += '<strong>Event:</strong> ';
             html += ajaj.response[0].name;
 			html += '<br/><strong>Happening At:</strong> ';
-			html += jsdate; //formatDate(jsdate,"ddd MMM d \a\t h:mm TT");
+			var finalDate = formatDate(dateFormatted,"ddd MMM d \@ h:mm TT");
+			finalDate = finalDate.replace(/@/,'at');
+			html += finalDate;
 			html += '<br/><a href="eventinfo.php?e_id=' + e_id + '">Click here for more details</a>';
 			html += '</div>'
-            console.log('the html is: ' + html);
             winder.setContent(html);
         }
     };
