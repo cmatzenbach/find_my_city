@@ -8,7 +8,19 @@
     <span aria-hidden="true">&nbsp;</span>
     <span class="sr-only done">Got it 2!</span></button>
     <h4 class="modal-title">Hey There... <small></small></h4></div>
-        <div class="modal-body"><?= $message ?></div><div class="modal-footer">
+        <div class="modal-body"><?= $message ?></div>
+        <?php 
+            if ($data) { 
+                echo '<div class=\'modal-body\'>';
+                foreach ($data as $key => $value) {
+                    if ($key != "chris-log") {
+                        echo $key . ': ' . $value . '<br />';
+                    }
+                }
+                echo '</div>';
+            }
+        ?>
+        <div class="modal-footer">
         <button class="x btn btn-info" data-dismiss="modal" type="button" id="okDoneBro">Ok, Great!</button>
         </div>
     </div></div>

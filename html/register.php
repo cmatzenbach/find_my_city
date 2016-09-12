@@ -14,7 +14,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     /**
       * First we'll make sure all required fields were filled out 
     **/
-    $reqFields = array('email', 'username', 'first', 'last', 'password');
+    $reqFields = array('email', 'displayName', 'first', 'last', 'password');
 
     // Error to flag any empty req fields
     $reqError = false;
@@ -30,7 +30,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // PAUSE - need to prepare query for second check
     $userCheck = $pdo->prepare("SELECT * FROM user WHERE displayName = ?");
-    $userCheck->execute(array($_POST["username"]));    
+    $userCheck->execute(array($_POST["displayName"]));    
     // RESUME
 
     if ($reqError) { 
@@ -51,7 +51,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         try {
             $create = $pdo->prepare("INSERT INTO user(email,password,displayName,first,last,carrier,mobile) VALUES(?,?,?,?,?,?,?)")
-                          ->execute(array($_POST["email"], $_POST["password"], $_POST["username"], $_POST["first"], $_POST["last"], $_POST["carrier"], $_POST["mobile"]));
+                          ->execute(array($_POST["email"], $_POST["password"], $_POST["displayName"], $_POST["first"], $_POST["last"], $_POST["carrier"], $_POST["mobile"]));
         }
         catch (PDOException $e) {
             if ($e->getCode() == 1062) {
