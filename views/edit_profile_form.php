@@ -119,23 +119,17 @@ body {
 </style>
 
 <script>
-// helper function, returns array of all input tags by given value 
-// http://stackoverflow.com/questions/8926378/how-to-select-an-input-element-by-value-using-javascript (user652649)
-function getInputsByValue(value)
-{
-    var allInputs = document.getElementsByTagName("input");
-    var results = [];
-    for(var x=0;x<allInputs.length;x++)
-        if(allInputs[x].value == value)
-            results.push(allInputs[x]);
-    return results;
-}
-
 	// Pre-populate selected carrier
 	document.addEventListener('DOMContentLoaded', function() {
     	var selectedCarrier = '<?php echo $userData["carrier"]; ?>'; 
-      var carrierNode = getInputsByValue(selectedCarrier);
-		  document.carrierNode.selected = true;
+      var carrierNode = document.getElementById('carrier');
+      var opts = carrierNode.options;
+      for(var opt, j = 0; opt = opts[j]; j++) {
+        if(opt.value == selectedCarrier) {
+            carrierNode.selectedIndex = j;
+            break;
+        }
+      }
 	});
 
   // code to see if username already exists
