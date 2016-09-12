@@ -24,6 +24,9 @@
         <button class="x btn btn-info" data-dismiss="modal" type="button" id="okDoneBro">Ok, Great!</button>
         </div>
     </div></div>
+    <script>
+    var filters = (<?php echo json_encode($filters, JSON_HEX_TAG); ?>);//Don't forget the extra semicolon!
+    </script>
     <script type="text/javascript">
      jQuery("#okDoneBro").click( function(){
          window.location.replace("https://findmy.city");

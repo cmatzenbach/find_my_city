@@ -65,6 +65,17 @@ $("#editProfile").click(function() {
     	window.location.href = newurl;
 });
 
+/* Filter Event MOdal */
+$("#filterEvents").click(function() {
+	var options = {
+			url: "https://findmy.city/filter_events.php",
+			title:'Filter Events',
+			size: 'xl',
+			subtitle: 'Let\'s cut to the chase already'
+		};
+	eModal.ajax(options);
+});
+
 /* Event Info Modal */
 function eventInfoModal(num) {
 

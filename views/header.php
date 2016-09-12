@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>FindMy.City <?= $title ?></title>
+    <title>FindMy.City</title>
 
         <!-- http://getbootstrap.com/ -->
         <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -41,7 +41,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="#">List of Events</a></li>
-            <li><a href="#">Map Filters</a></li>
+            <li id="filterEvents"><a href="javascript:;">Map Filters</a></li>
             <li id="whatIsFindMyCity"><a href="javascript:;">What is FindMy.City?</a></li>
             <li class="toslink"><a href="javascript:;">Terms of Use</a></li>
           </ul>
