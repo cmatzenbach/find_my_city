@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 
-	var latitude = -6.565067,
-		longitude = 106.805026,
+	var latitude = 39.999673,
+		longitude = -83.012856,
 		map_zoom = 12;
 	var is_internetExplorer11= navigator.userAgent.toLowerCase().indexOf('trident') > -1;
 	var marker_url = ( is_internetExplorer11 ) ? 'http://gdurl.com/Uibp' : 'http://gdurl.com/kVn2';
@@ -213,7 +213,7 @@ jQuery(document).ready(function($){
 
 			var iconurl = "https://www.findmy.city/img/" + place.category + ".png";
 
-			// create new info window object
+			// create new info window object for loading
 			var infowind = new google.maps.InfoWindow({
                 content: '<div id="infotext">loading...</div>'
             });

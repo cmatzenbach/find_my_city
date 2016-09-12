@@ -47,8 +47,8 @@
         <small id="emailHelp" class="form-text text-muted">We will protect your email address as if it were our own.</small>
       </div>
       <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp"   placeholder="Create a Username" required="">
+        <label for="displayName">Username</label>
+        <input type="text" class="form-control" id="displayName" name="displayName" aria-describedby="usernameHelp"   placeholder="Create a Username" required="">
         <small id="usernameHelp" class="form-text text-muted">Your username will be displayed to the public.</small>
       </div>
       <div class="form-group">
