@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 require_once("../private/helpers.php");
 require("../private/sql.php");
 

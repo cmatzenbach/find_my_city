@@ -41,8 +41,8 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 render("message.php", "Username already taken. Please try again");
             }
             // If carrier doesn't match then update
-            else if ($key == "carrier" && $carriers[$value] != $userData[$key]) {
-                $changes["carrier"] = $carriers[$value];
+            else if ($key == "carrier" && $value != $userData[$carrier]) {
+                $changes["carrier"] = $value;
                 $nochange++;
             }
             // If not a special case, and data was changed, save in db
@@ -66,7 +66,6 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // prepare dynamic array of changed values for query
     $queryarr = []; $z = 0;
     foreach ($changes as $value) {
-        print_r(gettype($value));
         $queryarr[$z] = $value;
         $z++;
     }
@@ -78,7 +77,6 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else {
         // finally, let's run our dynamically constructed query
-        print_r("UPDATE user SET " . $set . " WHERE id = ?");
         $query = $pdo->prepare("UPDATE user SET " . $set . " WHERE id = ?");
         $query->execute($queryarr);
         render("message.php", ["message" => "Profile modified!"]);

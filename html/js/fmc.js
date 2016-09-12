@@ -231,9 +231,13 @@ jQuery(document).ready(function($){
 			var that = this;
 			//monitor marker for on-click
             google.maps.event.addListener(that.markers[place.id],'click', function(){
-                
-                //on click open the info window
+                // close previously opened info windows if they exist
+                if (that.infowindPrevious) that.infowindPrevious.close(map,that.markers[place.id]);
+
+			    // on click open the new info window
                 infowind.open(map, that.markers[place.id]);
+				// add prop to current object that holds last info window opened
+				that.infowindPrevious = infowind;
 
 				ajax_eventinfo(infowind,place.id);
 
