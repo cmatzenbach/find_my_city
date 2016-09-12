@@ -1,11 +1,11 @@
 /* Registration/login Popup */
-$("#navRegister").click(function() {
+$(".navRegister").click(function() {
 
 	var options = {
 			url: "renderstration.php",
 			title:'Login/Register',
 			size: 'xl',
-			subtitle: 'Login is required to add new events'
+			subtitle: 'Login is required to add new events, attend an event, etc.'
 		};
 	eModal.ajax(options);
 
@@ -48,7 +48,7 @@ $(".navbar-brand").click(function() {
     	window.location.href = newurl;
 });
 
-/* Registration/login Popup */
+/* Terms of Service */
 $(".toslink").click(function() {
 	var options = {
 			url: "https://findmy.city/terms.php",
@@ -58,3 +58,24 @@ $(".toslink").click(function() {
 		};
 	eModal.ajax(options);
 });
+
+/* Edit Profile Button */
+$("#editProfile").click(function() {
+		newurl = 'https://findmy.city/edit_profile.php';	
+    	window.location.href = newurl;
+});
+
+/* Event Info Modal */
+function eventInfoModal(num) {
+
+	var newurl = "https://findmy.city/eventinfo.php?e_id=" + num;
+
+	var options = {
+			url: newurl,
+			title: 'Event Info',
+			size: 'xl',
+			subtitle: ''
+		};
+
+	eModal.ajax(options);
+}
