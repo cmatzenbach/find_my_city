@@ -1,4 +1,4 @@
-
+<?php error_reporting(0); ?>
 <br><br><br>
 
 <div class="modal-dialog modal-sm" style="color:initial">

@@ -53,8 +53,19 @@ $(".navRegister").click(function() {
   <div class="row">
   
     <div class="col-sm-4">
-        <h3># Attending</h3>
-        <p>a number</p>
+        <h3>Attending</h3>
+        <p><strong><?= $attendeeCount ?> people have RSVP'd Yes:</strong>
+        <ul>
+        <?php 
+        if($attendeeCount <= 50)
+        {
+            foreach($attendees as $attendee){
+                print("<li>". $attendee . "</li>");
+            }
+        }else{
+            print("</ul><p>There are over 50 attendees!You probably don't need to know their usernames, that would look terrible on the page!</p>");
+        }?>
+        </ul>
     </div>
     <div class="col-sm-4">
         <h3>Min/Max</h3>
