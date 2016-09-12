@@ -21,7 +21,8 @@ if(!isset($_GET["e_id"]))
         $owner_rows = $pull2->fetchAll(PDO::FETCH_ASSOC);
         $owner = $owner_rows[0];
 
-        render("event_info_view.php", ["data" => $row, "owner" => $owner]);
+        renderSimple("event_info_view.php", ["data" => $row, "owner" => $owner]);
+
 }
 
 ?>

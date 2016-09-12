@@ -1,10 +1,35 @@
-<div id="containz">
-    <h1><?php echo $data["name"]; ?></h1>
+<div class="modal-body">
+
+<style>
+.modal-header { display: none;}
+</style>
+    <h1 style="margin-top:0px;"><?php echo $data["name"]; ?></h1>
     <?php if($data["user_id"] == $_SESSION["user_id"]) {
         print('<span style="float:right"><button type="submit" id="editEventButton" class="btn btn-primary">Edit Event</button></span>');
+    }
+    
+    if(isset($_SESSION["user_id"]))
+    {
+        print('<button type="submit" id="rsvpNo" class="btn btn-primary">RSVP YES</button> <button type="submit" id="rsvpYes" class="btn btn-primary">RSVP NO</button>');
+
+    }else{
+        print('<p><a href="javascript:;" class="navRegister">Login</a> to confirm attendance at the event. The event organizer may not accept unregistered guests.</p>');
     } ?>
 
-    <button type="submit" id="rsvpNo" class="btn btn-primary">RSVP YES</button> <button type="submit" id="rsvpYes" class="btn btn-primary">RSVP NO</button>
+    <script>
+    /* Registration/login Popup */
+$(".navRegister").click(function() {
+
+	var options = {
+			url: "renderstration.php",
+			title:'Login/Register',
+			size: 'xl',
+			subtitle: 'Login is required to add new events, attend an event, etc.'
+		};
+	eModal.ajax(options);
+
+});
+</script>
   <div class="row">
     <div class="col-sm-4">
       <h3>What?</h3>

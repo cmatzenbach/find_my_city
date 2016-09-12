@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 
-	var latitude = -6.565067,
-		longitude = 106.805026,
+	var latitude = 39.999673,
+		longitude = -83.012856,
 		map_zoom = 12;
 	var is_internetExplorer11= navigator.userAgent.toLowerCase().indexOf('trident') > -1;
 	var marker_url = ( is_internetExplorer11 ) ? 'http://gdurl.com/Uibp' : 'http://gdurl.com/kVn2';
@@ -354,8 +354,9 @@ function ajax_eventinfo(winder,e_id) {
 			var finalDate = formatDate(dateFormatted,"ddd MMM d \@ h:mm TT");
 			finalDate = finalDate.replace(/@/,'at');
 			html += finalDate;
-			html += '<br/><a href="eventinfo.php?e_id=' + e_id + '">Click here for more details</a>';
-			html += '</div>'
+			html += '<br/><br/><span style="color:blue;" onClick="eventInfoModal(';
+			html += e_id;  // ",'" + ajaj.response[0].name; + "')heyy";
+			html += ')">Click here for more details</span></div>';
             winder.setContent(html);
         }
     };
