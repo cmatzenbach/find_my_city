@@ -1,5 +1,5 @@
 
-<br><br><br><br><br><br><br>
+<br><br><br>
 
 <div class="modal-dialog modal-sm" style="color:initial">
     <div class="modal-content">

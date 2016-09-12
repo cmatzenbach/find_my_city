@@ -52,7 +52,7 @@
             require("user_profile_navbar.php");
             require("user_events_dynamic_bar.php");
           }else{
-            print('<li class="active" id="navRegister"><a href="javascript:;">Login/Register <span class="sr-only">(current)</span></a></li>');
+            print('<li class="active navRegister"><a href="javascript:;">Login/Register <span class="sr-only">(current)</span></a></li>');
           }?> 
           </ul>
         </div><!--/.nav-collapse -->
