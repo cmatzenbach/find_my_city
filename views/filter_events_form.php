@@ -1,6 +1,6 @@
 <div class="modal-body">
 
-<form action="filter_events.php" method="POST">
+<form action="index.php" method="POST">
 
     <div class="form-group">
         <label for="carrier">Filter By Event Type</label>
