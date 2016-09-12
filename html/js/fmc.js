@@ -354,7 +354,7 @@ function ajax_eventinfo(winder,e_id) {
 			var finalDate = formatDate(dateFormatted,"ddd MMM d \@ h:mm TT");
 			finalDate = finalDate.replace(/@/,'at');
 			html += finalDate;
-			html += '<br/><br/><span style="color:blue;" onClick="eventInfoModal(';
+			html += '<br/><br/><span style="color:blue;cursor:pointer;text-decoration:underine;" onClick="eventInfoModal(';
 			html += e_id;  // ",'" + ajaj.response[0].name; + "')heyy";
 			html += ')">Click here for more details</span></div>';
             winder.setContent(html);

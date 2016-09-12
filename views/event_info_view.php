@@ -3,14 +3,14 @@
 <style>
 .modal-header { display: none;}
 </style>
-    <h1 style="margin-top:0px;"><?php echo $data["name"]; ?></h1>
+    <h1 style="margin-top:0px;"><?php echo $data["name"]; ?>  <img src="https://findmy.city/img/<?php echo $data["category"]; ?>.png"></h1>
     <?php if($data["user_id"] == $_SESSION["user_id"]) {
         print('<span style="float:right"><button type="submit" id="editEventButton" class="btn btn-primary">Edit Event</button></span>');
     }
     
     if(isset($_SESSION["user_id"]))
     {
-        print('<button type="submit" id="rsvpNo" class="btn btn-primary">RSVP YES</button> <button type="submit" id="rsvpYes" class="btn btn-primary">RSVP NO</button>');
+        print('<a href="https://findmy.city/rsvp.php?mode=Y&e_id=' . $data["id"] . '"><button type="submit" class="btn btn-primary">RSVP YES</button></a> <button type="submit" id="rsvpNo" class="btn btn-primary" onClick="RSVP(N)">RSVP NO</button>');
 
     }else{
         print('<p><a href="javascript:;" class="navRegister">Login</a> to confirm attendance at the event. The event organizer may not accept unregistered guests.</p>');
@@ -34,8 +34,6 @@ $(".navRegister").click(function() {
     <div class="col-sm-4">
       <h3>What?</h3>
       <p><?= $data["description"] ?></p>
-      <p><strong>Category:</strong> <img src="https://findmy.city/img/<?php echo $data["category"]; ?>.png"></p>
-      <p><strong>Posted By:</strong> <?= $owner["displayName"] ?></p>
 
     </div>
     <div class="col-sm-4">
@@ -51,6 +49,24 @@ $(".navRegister").click(function() {
         <p><?= $data["address"]; ?></p>
     </div>
   </div>
+
+  <div class="row">
+  
+    <div class="col-sm-4">
+        <h3># Attending</h3>
+        <p>a number</p>
+    </div>
+    <div class="col-sm-4">
+        <h3>Min/Max</h3>
+        <p><?= $data["minRequired"] ?> / <?= $data["maxAllowed"] ?></p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Posted By:</h3>
+      <p><?= $owner["displayName"] ?></p>
+
+    </div>
+
+
 </div>
 
 <script>
@@ -63,7 +79,13 @@ $("#editEventButton").click(function() {
 		};
 	eModal.ajax(options);
 });
+
+function RSVP(yesorno) {
+		newurl = 'https://findmy.city/rsvp.php?<?= $data["id"]?>&mode=' + yesorno;	
+    	window.location.href = newurl;
+}
 </script>
+
 
 <style>
 body {
