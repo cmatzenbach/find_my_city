@@ -10,12 +10,7 @@
 <div id="containz">
 <h1>Edit Profile</h1>
 <h3>Because we all change...</h3>
-    <form id="newUserRegForm" data-parsley-validate="" action="edit_profile.php" method="POST">
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"  placeholder="Email Address" value="<?= $userData['email'] ?>">
-        <small id="emailHelp" class="form-text text-muted">We will protect your email address as if it were our own.</small>
-      </div>
+    <form id="editProfileForm" data-parsley-validate="" action="edit_profile.php" method="POST">
       <div class="form-group">
         <label for="displayName">Username</label>
         <input type="text" class="form-control" id="displayName" name="displayName" aria-describedby="usernameHelp"   placeholder="Change Username" value="<?= $userData['displayName'] ?>">
@@ -34,15 +29,14 @@
         <input type="tel" class="form-control" id="mobile" name="mobile"aria-describedby="mobileHelp" placeholder="Mobile Phone" value="<?= $userData['mobile'] ?>" pattern="^\d{10}$">
         <small id="mobileHelp" class="form-text text-muted">OPTIONAL: Enter your 10 digit mobile number <em>without dashes or spaces</em>.</small>
       </div>
-
     <div class="form-group">
-        <label for="carrier">Select Wireless Carrier</label>
+      <label for="carrier">Select Wireless Carrier</label>
       <select class="form-control" id="carrier" name="carrier" aria-describedby="carrierHelp">
             <option value=''>-- Select One --</option>
             <option value='sms_carriers__us__alltel' id='alltel'>Alltel</option>
             <option value='sms_carriers__us__alaska_communications' id='alaska_communications'>Alaska Communications</option>
             <option value='sms_carriers__us__assurance_wireless' id='assurance_wireless'>Assurance Wireless</option>
-            <option value='sms_carriers__us__at_and_t' id='at_and_t'>AT&T Wireless</option>
+            <option value='sms_carriers__us__at_and_t' id='at_and_t'>AT&amp;T Wireless</option>
             <option value='sms_carriers__us__bluegrass' id='bluegrass'>Bluegrass Cellular</option>
             <option value='sms_carriers__us__bluesky' id='bluesky'>Bluesky Communications</option>
             <option value='sms_carriers__us__blueskyfrog' id='blueskyfrog'>BlueSkyFrog</option>
@@ -98,7 +92,10 @@
           </select>
           <small id="carrierHelp" class="form-text text-muted">Please select your mobile carrier. (Optional)</small>
       </div>
-
+      <button type="submit" id="submitChangeForm" class="btn btn-primary">Ch-ch-change Profile</button>
+    </form>
+    <br />
+    <form id="editPasswordForm" data-parsley-validate="" action="edit_password.php" method="POST">
       <p><strong>Change Password</strong><br />To change your password, please type your new password below, and then confirm in the next field.  Once you submit, your password will be automatically changed.  Passwords are case-sensative and must be between 8 and 30 characters.</p>
       <div class="form-group">
         <label for="password">Password</label>
@@ -109,9 +106,10 @@
         <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" pattern="^([a-zA-Z0-9@*#]{8,30})$">
       </div>
 	    <input type="hidden" name="usernameTaken" id="usernameTaken" value="0" />
-
-      <button type="submit" id="submitChangeForm" class="btn btn-primary">Ch-ch-change Me</button>
+      <button type="submit" id="submitPasswordForm" class="btn btn-primary">Ch-ch-change Password</button>
     </form>
+
+      
 
 <style>
 body {
@@ -126,6 +124,8 @@ body {
     	var selectedCarrier = carriers['<?php echo $userData["carrier"]; ?>']; 
 		  document.getElementById(selectedCarrier).selected = true;
 	});
+
+  // code to see if username already exists
 	var displayNameNode = $('#displayName');
 	displayNameNode.on('input', function(e) {
 		if (displayNameNode.val().length) {

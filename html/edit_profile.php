@@ -31,25 +31,16 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     foreach ($_POST as $key => $value) {
         // If data in POST is different from data in db
         if ($value != $userData[$key]) {
-            // If it's the password being changed, make sure it's not blank and make sure it matches password confirm
-            if ($key == "password" && $value == $_POST["password2"] && $value != '') {
-                $changes["password"] = $value;
-                $nochange++;
-            }
-            // If password doesn't match
-            else if ($key == "password" && $value != $_POST["password2"]) {
-                render("message.php", ["message" => "Password does not match. Please try again."]);
-            }
-            // If password is blank
-            else if ($key == "password" && $value == $_POST["password2"] && $value == '') {
-                continue;
-            }
             // If username and not already taken
-            else if ($key == "displayName" && $_POST["usernameTaken"] == 0) {
+            if ($key == "displayName" && $_POST["usernameTaken"] == 0) {
                 $changes["displayName"] = $value;
                 $nochange++;
             }
-            // If carrier doesn't match then update'
+            // If username is already taken and they ignore warning
+            else if ($key == "displayName" && $_POST["usernameTaken"] == 1) {
+                render("message.php", "Username already taken. Please try again");
+            }
+            // If carrier doesn't match then update
             else if ($key == "carrier" && $carriers[$value] != $userData[$key]) {
                 $changes["carrier"] = $carriers[$value];
                 $nochange++;
@@ -60,17 +51,37 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $nochange++;
             }
             // If none of these apply, do nothing
-            else {
-                continue;
-            }
+            else {}
         }
     }
+
+    // prepare dynamic set values for query
+    $set = "";
+    foreach($changes as $key => $value) {
+        $set .= $key . " = ?, ";
+    }
+    // remove comma and space from end of last query value
+    $set = substr($set, 0, -2);
+    
+    // prepare dynamic array of changed values for query
+    $queryarr = []; $z = 0;
+    foreach ($changes as $value) {
+        print_r(gettype($value));
+        $queryarr[$z] = $value;
+        $z++;
+    }
+    // add id to end of query for WHERE parameter
+    $queryarr[$z] = $_SESSION["user_id"];
 
     if ($nochange == 0) {
         render("message.php", ["message" => "You didn't modify anything!  No changes made.", "data" => $changes]);
     }
     else {
-        render("message.php", ["message" => "Account changed! Changes below:", "data" => $changes]);
+        // finally, let's run our dynamically constructed query
+        print_r("UPDATE user SET " . $set . " WHERE id = ?");
+        $query = $pdo->prepare("UPDATE user SET " . $set . " WHERE id = ?");
+        $query->execute($queryarr);
+        render("message.php", ["message" => "Profile modified!"]);
     }
 }
 
