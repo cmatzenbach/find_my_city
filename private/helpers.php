@@ -62,5 +62,4 @@ function renderSimple($view, $values = []) {
     }
 }
 
-
 ?>

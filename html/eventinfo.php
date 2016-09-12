@@ -12,7 +12,7 @@ if(!isset($_GET["e_id"]))
 {
     render("message.php", [message => "Buddy, you forgot to put the e_id in the URL! (if you don't know what this means you're probably fine to just ignore it)"]);
 } else {
-        //query database for username    
+        //query database for event ID    
         $pull = $pdo->prepare("SELECT * FROM event WHERE id = ?");
         $pull->execute(array($_GET["e_id"]));
         $eventData = $pull->fetch(PDO::FETCH_ASSOC);
@@ -27,11 +27,22 @@ if(!isset($_GET["e_id"]))
         //$ownerData = $owner_rows[0];
 
         //pull attendees
-        $pull3 = $pdo->prepare("SELECT user.displayName FROM attendance INNER JOIN user ON attendance.user_id=user.id WHERE attendance.event_id = ?");
+        $pull3 = $pdo->prepare("SELECT user.id, user.displayName FROM attendance INNER JOIN user ON attendance.user_id=user.id WHERE attendance.event_id = ?");
         $pull3->execute(array($_GET["e_id"]));
-        $attendees = $pull3->fetchAll(PDO::FETCH_COLUMN);
+        $attendees = $pull3->fetchAll(PDO::FETCH_ASSOC);
         $attendeeCount = count($attendees);
         
+        //check if user is attending
+        $pull4 = $pdo->prepare("SELECT user_id FROM attendance WHERE user_id = ? AND event_id = ?");
+        $pull4->execute(array($_SESSION["user_id"],$_GET["e_id"]));
+        $userAttendee = $pull4->fetchAll(PDO::FETCH_ASSOC);
+        $userAttendanceCount = count($userAttendee);
+        if($userAttendanceCount > 0){
+            $isAttending = "yes";
+        }else{
+            $isAttending = "no";
+        }
+
         //if attendee count has reached limit
 
         $disableRSVP = "No";
@@ -40,7 +51,7 @@ if(!isset($_GET["e_id"]))
             $disableRSVP = "Yes";
         }
 
-        renderSimple("event_info_view.php", ["data" => $eventData, "owner" => $ownerData, "attendeeCount" => $attendeeCount, "attendees" => $attendees]);
+        renderSimple("event_info_view.php", ["data" => $eventData, "owner" => $ownerData, "attendeeCount" => $attendeeCount, "attendees" => $attendees, "isAttending" => $isAttending]);
 
 }
 
