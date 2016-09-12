@@ -1,5 +1,10 @@
 <?php
 
+if (session_id() == "") 
+{ 
+    session_start(); 
+}; 
+
 /**
  * Facilitates debugging by dumping contents of argument(s)
  * to browser.

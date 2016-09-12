@@ -4,14 +4,20 @@
 .modal-header { display: none;}
 </style>
     <h1 style="margin-top:0px;"><?php echo $data["name"]; ?>  <img src="https://findmy.city/img/<?php echo $data["category"]; ?>.png"></h1>
-    <?php if($data["user_id"] == $_SESSION["user_id"]) {
-        print('<span style="float:right"><button type="submit" id="editEventButton" class="btn btn-primary">Edit Event</button></span>');
-    }
-    
+    <?php 
     if(isset($_SESSION["user_id"]))
     {
-        print('<a href="https://findmy.city/rsvp.php?mode=Y&e_id=' . $data["id"] . '"><button type="submit" class="btn btn-primary">RSVP YES</button></a> <button type="submit" id="rsvpNo" class="btn btn-primary" onClick="RSVP(N)">RSVP NO</button>');
+        if($owner["id"] == $_SESSION["user_id"]) 
+        {
+            print('<span style="float:right"><button type="submit" id="editEventButton" class="btn btn-primary">Edit Event</button></span>');
+        }
 
+        if($data["status"] != "full")
+        {
+            print('<a href="https://findmy.city/rsvp.php?mode=Y&e_id=' . $data["id"] . '"><button type="submit" class="btn btn-primary">RSVP YES</button></a> <button type="submit" id="rsvpNo" class="btn btn-primary" onClick="RSVP(N)">RSVP NO</button>');
+        }else{
+            print('<h4>Sorry, this event cannot accept additional attendees!</h4>');
+        }
     }else{
         print('<p><a href="javascript:;" class="navRegister">Login</a> to confirm attendance at the event. The event organizer may not accept unregistered guests.</p>');
     } ?>
@@ -69,7 +75,9 @@ $(".navRegister").click(function() {
     </div>
     <div class="col-sm-4">
         <h3>Min/Max</h3>
-        <p><?= $data["minRequired"] ?> / <?= $data["maxAllowed"] ?></p>
+        <p><?= $data["minRequired"] ?> / <?= $data["maxAllowed"] ?>
+        <p><strong>Status:</strong></p>
+        <p><?= $data["status"] ?></p>
     </div>
     <div class="col-sm-4">
       <h3>Posted By:</h3>
