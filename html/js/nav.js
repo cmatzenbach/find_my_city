@@ -70,7 +70,7 @@ $("#filterEvents").click(function() {
 	var options = {
 			url: "https://findmy.city/filter_events.php",
 			title:'Filter Events',
-			size: 'xl',
+			size: 'l',
 			subtitle: 'Let\'s cut to the chase already'
 		};
 	eModal.ajax(options);
