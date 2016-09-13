@@ -32,7 +32,7 @@
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-primary btn-sm">
                                             Submit</button>
-                                        <a href="javascript:;">Forgot your password?</a>
+                                        <div id="forgot-password" style="display:inline"><a href="javascript:;">Forgot your password?</a></div>
                                     </div>
                                 </div>
                                 </form>
@@ -159,3 +159,11 @@
                     </div>
                 </div>
             </div>
+<script>
+            /* Forgot Password Form */
+$("#forgot-password").click(function() {
+	console.log("firing");
+		newurl = 'https://findmy.city/forgot-password.php';	
+    	window.location.href = newurl;
+});
+</script>
