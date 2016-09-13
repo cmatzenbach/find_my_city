@@ -82,24 +82,24 @@
             <option value='basketball'>Basketball</option>
             <option value='beach'>Beach</option>
             <option value='baseball'>Baseball</option>
-            <option value='bicycling'>Bicycling</option
+            <option value='cycling'>Cycling</option>
             <option value='basketball'>Bowling</option>
             <option value='cultural'>Cultural</option>
             <option value='football'>Football</option>
-            <option value='football'>Frisbee</option>
+            <option value='frisbee'>Frisbee</option>
             <option value='jobs'>Job Fair</option>
             <option value='musicplay'>Music (playing instruments)</option>
             <option value='musiclisten'>Music (appreciation/concerts)</option>
             <option value='party'>Party</option>
             <option value='picnic'>Picnic</option>
             <option value='political'>Political</option>
-            <option value='random'>Random</opt0ion>
+            <option value='random'>Random</option>
             <option value='religious'>Religious</option>  
             <option value='study'>Study Group</option>
             <option value='tabletop'>Tabletop Games</option>
             <option value='technology'>Technology</option>
             <option value='tennis'>Tennis</option>
-            <option value='tennis'>Volleyball</option>
+            <option value='volleyball'>Volleyball</option>
             <option value='weightlifting'>Weight Lifting</option>
             <option value='yoga'>Yoga</option>
             <option value='other'>Other</option>
@@ -114,13 +114,13 @@
       </div>
     <div class="form-group">
         <label for="minNum">Minimum # of Attendees</label>
-        <input class="form-control" type="number" min="0" step="1" id="minNum" name="minRequired" required="" aria-describedby="minHelp">
-        <small id="minHelp" class="form-text text-muted">If your event requires that a minimum number of people to attend, enter the number here. Zero = No Minimum.</small>
+        <input class="form-control" type="number" min="1" step="1" id="minNum" name="minRequired" required="" aria-describedby="minHelp">
+        <small id="minHelp" class="form-text text-muted">Enter the minimum number of attendees that your event needs in order to happn. (This is typically used for team sports). If you're not sure just enter 1.</small>
     </div>
     <div class="form-group">
         <label for="minNum">Maximum # of Attendees</label>
-        <input class="form-control" type="number" min="0" step="1" id="minNum" required+"" name="maxAllowed" aria-describedby="maxHelp">
-        <small id="maxHelp" class="form-text text-muted">Enter the maximum number of attendees. Zero = No Limit.</small>
+        <input class="form-control" type="number" min="1" step="1" id="minNum" required="" name="maxAllowed" aria-describedby="maxHelp">
+        <small id="maxHelp" class="form-text text-muted">Enter the maximum number of people you wish to attend your event.</small>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>

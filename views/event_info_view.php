@@ -105,7 +105,6 @@ $(".navRegister").click(function() {
     <div class="col-sm-4">
       <h3>Posted By:</h3>
       <p><?= $owner["displayName"] ?></p>
-
     </div>
 
 
@@ -114,7 +113,7 @@ $(".navRegister").click(function() {
 <script>
 $("#editEventButton").click(function() {
 	var options = {
-			url: 'https://findmy.city/event_edit.php?e_id=<?= $data["id"] ?>',
+			url: 'https://findmy.city/edit_event.php?mode=modal&e_id=<?= $data["id"] ?>',
 			title:'Edit Event',
 			size: 'xl',
 			subtitle: ''
