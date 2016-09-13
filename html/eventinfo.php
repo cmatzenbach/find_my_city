@@ -32,17 +32,26 @@ if(!isset($_GET["e_id"]))
         $attendees = $pull3->fetchAll(PDO::FETCH_ASSOC);
         $attendeeCount = count($attendees);
         
-        //check if user is attending
-        $pull4 = $pdo->prepare("SELECT user_id FROM attendance WHERE user_id = ? AND event_id = ?");
-        $pull4->execute(array($_SESSION["user_id"],$_GET["e_id"]));
-        $userAttendee = $pull4->fetchAll(PDO::FETCH_ASSOC);
-        $userAttendanceCount = count($userAttendee);
-        if($userAttendanceCount > 0){
-            $isAttending = "yes";
-        }else{
-            $isAttending = "no";
-        }
 
+        
+        //if user is logged in
+        if(isset($_SESSION["user_id"]))
+        {
+            //check if user is attending the event
+            $pull4 = $pdo->prepare("SELECT user_id FROM attendance WHERE user_id = ? AND event_id = ?");
+            $pull4->execute(array($_SESSION["user_id"],$_GET["e_id"]));
+            $userAttendee = $pull4->fetchAll(PDO::FETCH_ASSOC);
+            $userAttendanceCount = count($userAttendee);
+            
+            //set attending variable
+            if($userAttendanceCount > 0){
+                $isAttending = "yes";
+            }else{
+                $isAttending = "no";
+            }
+
+        }
+        
         //if attendee count has reached limit
 
         $disableRSVP = "No";
