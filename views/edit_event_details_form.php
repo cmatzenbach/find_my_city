@@ -6,8 +6,8 @@
 
 
 <div id="containz">
-    <h1>Edit Event</h1>
-    <h3>Event Details</h3>
+    <h1>Edit Event Details</h1>
+    <h4>NOTE: You are not allowed to edit an event's location or time after it has been created.</h4>
     <div style="color:red"> 
     <?php 
     if(!empty($errorStack))
@@ -15,10 +15,12 @@
         print("<strong>Please correct the following errors:</strong><br>");
         echo $errorStack;
     }
-
     ?>
     </div>
-    <form action="edit_event.php?map=pkr" method="POST">
+    <form action='edit_event_details.php?map=pkr&e_id=<?= $eventData["id"] ?>' method="POST">
+
+    <input type="hidden" value='<?= $eventData["id"] ?>' name="id" />
+
     <div class="form-horizontal" style="width: 80%; margin: 0 auto;">
       <div class="form-group">
         <label for="eventName">Event Name</label>
@@ -26,14 +28,8 @@
         <small id="eventNameHelp" class="form-text text-muted">Choose something catchy &amp; fun!</small>
       </div>
 
-      <div class="form-group">
-        <label for="addressx">Event Location</label>
-        <input type="text" class="form-control" id="addressx" name="address" aria-describedby="addressHelp" value='<?= $eventData["address"] ?>' required="">
-        <small id="addressHelp" class="form-text text-muted">Please be sure to double check that the location shown in the map below is accurate.</small>
-      </div>
-
      <div class="form-group">
-        <label for="carrier">Select Event Type</label>
+        <label for="carrier">Select Event Category</label>
       <select class="form-control" id="category" name="category" required="" aria-describedby="categoryHelp">
             <option value=''>-- Select One --</option>
             <option value='basketball'>Basketball</option>
@@ -61,7 +57,7 @@
             <option value='yoga'>Yoga</option>
             <option value='other'>Other</option>
           </select>
-          <small id="categoryHelp" class="form-text text-muted">Please select a category for this event. </small>
+          <small id="categoryHelp" class="form-text text-muted">Please select a category for this event. The category you choose will determine which icon your event will use on the map.</small>
       </div>
 <script>
       $( document ).ready(function() {
