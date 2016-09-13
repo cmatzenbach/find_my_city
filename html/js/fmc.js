@@ -277,24 +277,26 @@ jQuery(document).ready(function($){
 					var current = data[i];
 
 					// if filters are on, see if item passes filter conditions
-					if (filters !== null) {
-						for (prop in filters) {
-							// ignore mode
-							if (prop != "mode")
-								// if filter is blank
-								if (filters[prop] == "") {
-									continue;
-								}
-								// if filter isn't blank and event doesn't match
-								else if (current[prop] != filters[prop]) {
-									validMarker = false;
-								}
-								// presumably filter isn't blank and event does match
-								else { 
-									continue; 
-								}
-							// if mode, ignore
-							else {}
+					if (typeof(filters) != 'undefined') {
+						if (filters !== null) {
+							for (prop in filters) {
+								// ignore mode
+								if (prop != "mode")
+									// if filter is blank
+									if (filters[prop] == "") {
+										continue;
+									}
+									// if filter isn't blank and event doesn't match
+									else if (current[prop] != filters[prop]) {
+										validMarker = false;
+									}
+									// presumably filter isn't blank and event does match
+									else { 
+										continue; 
+									}
+								// if mode, ignore
+								else {}
+							}
 						}
 					}
 

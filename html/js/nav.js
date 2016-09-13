@@ -90,3 +90,9 @@ function eventInfoModal(num) {
 
 	eModal.ajax(options);
 }
+
+/* Forgot Password Form */
+$("#forgot-password").click(function() {
+		newurl = 'https://findmy.city/forgot-password.php';	
+    	window.location.href = newurl;
+});
