@@ -93,6 +93,7 @@ function eventInfoModal(num) {
 
 /* Forgot Password Form */
 $("#forgot-password").click(function() {
+	console.log("firing");
 		newurl = 'https://findmy.city/forgot-password.php';	
     	window.location.href = newurl;
 });
