@@ -34,7 +34,7 @@ if(!isset($_GET["e_id"]))
         
 
         
-        //if user is logged in
+        //if user is logged in..
         if(isset($_SESSION["user_id"]))
         {
             //check if user is attending the event
@@ -50,6 +50,8 @@ if(!isset($_GET["e_id"]))
                 $isAttending = "no";
             }
 
+        }else {
+            $isAttending = "no";
         }
         
         //if attendee count has reached limit
