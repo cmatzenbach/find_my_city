@@ -10,7 +10,7 @@
         //if event owner print event button
         if($owner["id"] == $_SESSION["user_id"]) 
         {
-            print('<span style="float:right"><button type="submit" id="editEventButton" class="btn btn-primary">Edit Event</button></span>');
+            print('<span style="float:right"><button type="submit" id="editEventButton" class="btn btn-primary">Manage Event</button></span>');
         }
 
        // print("IS ATTENDING: ");
@@ -105,7 +105,6 @@ $(".navRegister").click(function() {
     <div class="col-sm-4">
       <h3>Posted By:</h3>
       <p><?= $owner["displayName"] ?></p>
-
     </div>
 
 
@@ -114,8 +113,8 @@ $(".navRegister").click(function() {
 <script>
 $("#editEventButton").click(function() {
 	var options = {
-			url: 'https://findmy.city/event_edit.php?e_id=<?= $data["id"] ?>',
-			title:'Edit Event',
+			url: 'https://findmy.city/manage_event.php?mode=modal&e_id=<?= $data["id"] ?>',
+			title:'Manage Event',
 			size: 'xl',
 			subtitle: ''
 		};

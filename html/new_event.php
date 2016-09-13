@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
 // if user reached page via POST
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    print_r($_POST);
+    //print_r($_POST);
     /**
       * First we'll make sure all required fields were filled out 
     **/
@@ -68,6 +68,11 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //else OK to proceed with queries
     else {
+
+        if($_POST["minRequired"] >= $_POST["maxAllowed"]){
+            render("message.php", ["message" => "The minimum number of required attendees must be less than or equal to the maximum allowed."]);
+            exit;
+        }
 
         try {
             //insert event
