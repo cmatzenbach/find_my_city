@@ -91,6 +91,22 @@ function eventInfoModal(num) {
 	eModal.ajax(options);
 }
 
+/* Event Manage Modal ! */
+function eventManageModal(num) {
+
+	var newurl = "https://findmy.city/manage_event.php?mode=modal&e_id=" + num;
+
+	var options = {
+			url: newurl,
+			title: 'Manage Event',
+			size: 'xl',
+			subtitle: ''
+		};
+
+	eModal.ajax(options);
+}
+
+
 /* Forgot Password Form */
 $("#forgot-password").click(function() {
 	console.log("firing");

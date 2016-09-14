@@ -11,7 +11,7 @@
                             <div class="tab-pane active" id="Login">
                             
                                 <!-- Begin form -->
-                                <form role="form" class="form-horizontal" action="login.php" method="POST">
+                                <form role="form" class="form-horizontal" action="login.php?mode=reglogin" method="POST">
                                 <div class="form-group">
                                     <label for="email" class="col-sm-2 control-label">
                                         Email Address</label>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="tab-pane" id="Registration">
      <!-- REGISTRATION FORM -->                           
-    <form id="newUserRegForm" data-parsley-validate="" action="register.php" method="POST">
+    <form id="newUserRegForm" data-parsley-validate="" action="register.php?mode=reglogin" method="POST">
       <div class="form-group">
         <label for="email">Email address</label>
         <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"  placeholder="Email Address" required="">
