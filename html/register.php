@@ -3,7 +3,8 @@
 session_start();
 
 require_once("../private/helpers.php");
-require("../private/sql.php");
+require_once("../private/sql.php");
+require_once("../private/spice.php");
 
 // if user reached page via GET
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -51,9 +52,12 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     **/
     else {
 
+        // secure the password
+        $password = hash('sha512', $salt.$_POST["password"]);
+
         try {
             $create = $pdo->prepare("INSERT INTO user(email,password,displayName,first,last,carrier,mobile) VALUES(?,?,?,?,?,?,?)")
-                          ->execute(array($_POST["email"], $_POST["password"], $_POST["displayName"], $_POST["first"], $_POST["last"], $_POST["carrier"], $_POST["mobile"]));
+                          ->execute(array($_POST["email"], $password, $_POST["displayName"], $_POST["first"], $_POST["last"], $_POST["carrier"], $_POST["mobile"]));
         }
         catch (PDOException $e) {
             if ($e->getCode() == 1062) {

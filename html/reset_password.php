@@ -2,9 +2,10 @@
 
 include("../private/helpers.php");
 require_once("../private/sql.php");
+require_once("../private/spice.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    render("forgot_password_form.php");
+    render("reset_password_form.php");
 }
 
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,9 +14,6 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $confirmpassword = $_POST["password2"];
     $hash = $_POST["q"];
-
-    // Use the same salt from the forgot_password.php file
-    $salt = "498#2D83B631%3800EBD!801600D*7E3CC13";
 
     // Generate the reset key
     $resetkey = hash('sha512', $salt.$email);
@@ -34,13 +32,13 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $query->bindParam(':email', $email);
                 $query->execute();
                 $conn = null;
-            echo "Your password has been successfully reset.";
+            render("message.php", ["message" => "Your password has been successfully reset."]);
         }
         else
-            echo "Your password's do not match.";
+            render("message.php", ["message" => "Your passwords do not match."]);
     }
     else
-        echo "Your password reset key is invalid.";
+        render("message.php", ["message" => "Your password reset key is invalid."]);
 
 }
 
