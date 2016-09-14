@@ -6,7 +6,7 @@ require_once("../private/helpers.php");
 require_once("../private/sql.php");
 require_once("../private/spice.php");
 
-//has and secure the password
+// secure the password
 $password = hash('sha512', $salt.$_POST["password"]);
 
 $login = $pdo->prepare("SELECT * FROM user WHERE email = ? AND password = ?");

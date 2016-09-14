@@ -2,7 +2,6 @@
 
 require_once("../private/helpers.php");
 require("../private/sql.php");
-require("carriers.php");
 
 $user = $pdo->prepare("SELECT * FROM user WHERE id = ?");
 $user->execute(array($_SESSION["user_id"])); 

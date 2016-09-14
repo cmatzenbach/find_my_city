@@ -1,7 +1,8 @@
 <?php 
 
 require_once("../private/helpers.php");
-require("../private/sql.php");
+require_once("../private/sql.php");
+require_once("../private/spice.php");
 
 $user = $pdo->prepare("SELECT * FROM user WHERE id = ?");
 $user->execute(array($_SESSION["user_id"])); 
@@ -24,10 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST["password"])) {
-        if ($_POST["password"] != $userData["password"]) {
+        // get hashed password
+        $password = hash('sha512', $salt.$_POST["password"]);
+        if ($password != $userData["password"]) {
             // If it's being changed, make sure it's not blank and make sure it matches password confirm
             if ($_POST["password"] == $_POST["password2"] && $_POST["password"] != '') {
-                $change = $pdo->prepare("UPDATE user SET password = ? WHERE id = ?")->execute(array($_POST["password"], $_SESSION["user_id"]));
+                $change = $pdo->prepare("UPDATE user SET password = ? WHERE id = ?")->execute(array($password, $_SESSION["user_id"]));
                 render("message.php", ["message" => "Password changed!"]);
             }
             // If password doesn't match
