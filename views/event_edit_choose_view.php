@@ -33,10 +33,10 @@ var options = {
         <a href='https://findmy.city/edit_event_details.php?e_id=<?php echo $eventData["id"]; ?>'><button class="btn btn-primary">Edit Event Details</button></a>
     </div>
     <div class="col-sm-4">
-       <button id="emailAttendees" class="btn btn-primary" onClick="eModal.alert('This feature is not available just yet, but it will be ready very soon!!');">Email Attendees</button></a>
+       <button id="emailAttendees" class="btn btn-primary" onClick="location.href='email_attendees.php?e_id=<?php echo $eventData["id"]; ?>'">Email Attendees</button></a>
     </div>
     <div class="col-sm-4">
-        <button id="cancelEvent" class="btn btn-primary" onClick="eModal.confirm(options)  .then(delete, donothing);">Cancel Event</button></a>
+        <button id="cancelEvent" class="btn btn-primary" onClick="location.href='delete_event.php?e_id=<?php echo $eventData["id"]; ?>'">Cancel Event</button></a>
     </div>
 </div>
 
